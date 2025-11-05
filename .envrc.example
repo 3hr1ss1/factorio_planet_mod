@@ -1,0 +1,3 @@
+export factorio="/path/to/factorio"
+export mod_dir="/path/to/mods"
+export mod_name="name/of/mods"
