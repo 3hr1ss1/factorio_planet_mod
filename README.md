@@ -13,15 +13,16 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
 - New Ressources (sand, glass)
 
 ### Ressource Gaining
-- Gaining energy by using solar
-- Gaining wood by harvesting dead bush
-- Gaining coarse sand by mining anywhere
-- 
+- Gaining *energy* by using solar
+- Gaining *wood* by harvesting dead bush
+- Gaining *coarse sand* by mining anywhere
 
 ### Products
-- Gaining [stone, fine sand] by sieving [coarse sand]
-- Gaining [copper ore, iron ore, silicon dust] by washing [fine sand]
-- Gaining [glass] by smelting [fine sand]
+- Gaining *stone, fine sand* by sieving *coarse sand*
+- Gaining *copper ore, iron ore, silicon dust* by washing *fine sand*
+- Gaining *glass* by smelting *fine sand*
+- Gaining *silicon ingot* by smelting *silicon dust*
+- 
 
 ### Buildings
 - Short handed Inserter 
