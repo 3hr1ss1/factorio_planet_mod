@@ -1,2 +1,3 @@
 #/usr/bin/env bash
-${factorio} --mod-directory .
+cp src "${mod_dir}"/"${mod_name}" -r
+steam-run "${factorio}"
