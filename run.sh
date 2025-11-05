@@ -1,3 +1,4 @@
 #/usr/bin/env bash
-cp src "${mod_dir}"/"${mod_name}" -r
+set -e
+cp -r src "${mod_dir}"/"${mod_name}"
 steam-run "${factorio}"
