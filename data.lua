@@ -1,6 +1,6 @@
 --data.lua
-require("__test-mod__.planet.planet")
-require("__test-mod__.technology")
+require("__factorio_planet_mod__.planet.planet")
+require("__factorio_planet_mod__.technology")
 
 
 
