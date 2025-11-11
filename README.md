@@ -1,5 +1,5 @@
 # Mithra - a Factorio Planet Mod
-A factorio mod for our Software development Subject.
+A factorio mod for our Software Engineering Subject.
 
 ## Concept
 Mithra is a desert-like planet on the fourth ring of the Factorio solar system. There is barely anything more than sand, sun and vicious creatures. But those who can make sand and sun their own will unlock new resources and buildings such as “short-handed inserter”, “solar ovens” and “basic fluid pumps”.
