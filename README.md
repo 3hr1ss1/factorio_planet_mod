@@ -23,6 +23,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
 - Gaining **copper ore, iron ore** by washing **fine sand**
 - Gaining **glass** by smelting **fine sand**
 - Gaining **silicon ingot** by smelting **silicon dust**
+- Gaining **solar science pack** by smelting 
 
 ### Buildings
 - Short handed Inserter 
@@ -48,3 +49,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
   + Slows down surrounding storms to create deposits of silicon dust
 - Force-Field
   + Reduces the moving force on storm-particels to prevent building and player damage in the radiant
+- Laser-Assisted Plant
+  + A better assembly machine for science crafting. Only Machine to craft the Laser-Science pack
+  + Max Base Crafting Speed 4
+  + Base Productivity 50%
