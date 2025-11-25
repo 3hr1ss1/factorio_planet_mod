@@ -1,7 +1,7 @@
 {
   "name": "factorio_planet_mod",
   "version": "0.1.0",
-  "title": "Test Mod",
+  "title": "Planet Mithras",
   "author": "Chrissi, Lxcyfxr",
   "factorio_version": "2.0",
   "dependencies": ["base >= 2.0", "space-age>= 2.0", "PlanetsLib >= 1.14.2"],
