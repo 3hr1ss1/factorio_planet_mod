@@ -1,4 +1,4 @@
---local planet_map_gen = require("__test-mod__.planet.mithras-map-gen")
+local planet_map_gen = require("__factorio_planet_mod__.planet.mithras-map-gen")
 local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-definitions")
 --local fog = effects.default_fog_effect_properties() 
 
@@ -16,7 +16,7 @@ local planet = {
         label_orientation = 0.15,
         order = "k[mithras]",
         subgroup = "planets",
-        --map_gen_settings = planet_map_gen.mithras(), 
+        map_gen_settings = planet_map_gen.mithras(), 
         pollutant_type = nil,
         solar_power_in_space = 250,
         platform_procession_set =
