@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "title": "Planet Mithras",
   "author": "Chrissi, Lxcyfxr",
+  "Github":"https://github.com/3hr1ss1/factorio_planet_mod",
   "factorio_version": "2.0",
   "dependencies": ["base >= 2.0", "space-age>= 2.0", "PlanetsLib >= 1.14.2"],
   "description": "This mod adds a planet to factorio"

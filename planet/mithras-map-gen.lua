@@ -30,7 +30,7 @@ planet_map_gen.mithras = function()
     autoplace_controls =
     {
       ["scrap"] = {},
-      ["fulgora_islands"] = {},
+      --["fulgora_islands"] = {},
       ["fulgora_cliff"] = {},
     },
     autoplace_settings =
@@ -39,8 +39,7 @@ planet_map_gen.mithras = function()
       {
         settings =
         {
-          ["oil-ocean-shallow"] = {},
-          ["oil-ocean-deep"] = {},
+          --["mithras-desert"] = {},
           ["fulgoran-rock"] = {},
           ["fulgoran-dust"] = {},
           ["fulgoran-sand"] = {},
