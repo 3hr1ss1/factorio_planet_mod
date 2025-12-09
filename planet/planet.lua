@@ -6,8 +6,8 @@ local planet = {
   {
         type = "planet",
         name = "mithras",
-        icon = "__space-age__/graphics/icons/vulcanus.png",
-        starmap_icon = "__space-age__/graphics/icons/starmap-planet-vulcanus.png",
+        icon = "__factorio_planet_mod__/assets/mithras.png",
+        starmap_icon = "__factorio_planet_mod__/assets/starmap-planet-mithras.png",
         starmap_icon_size = 512,
         gravity_pull = 10,
         distance = 15,
