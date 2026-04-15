@@ -4,6 +4,7 @@ local planet_map_gen = require("__space-age__/prototypes/planet/planet-map-gen")
 planet_map_gen.mithras = function()
   local tile_settings = {}
   local has_custom_mithras_tiles = false
+  local entity_settings = {}
 
   -- Prefer custom Mithras desert tiles when they exist.
   -- Only fall back to Fulgora tiles if none of the custom tiles are present.
@@ -31,6 +32,30 @@ planet_map_gen.mithras = function()
     tile_settings["fulgoran-rock"] = {}
   end
 
+  entity_settings["big-fulgora-rock"] = {}
+
+  -- Follow Muluna's guarded autoplace style: only include tree entities that exist.
+  if data and data.raw and data.raw.tree then
+    local dead_tree_candidates =
+    {
+      "dead-dry-hairy-tree",
+      "dry-hairy-tree",
+      "dead-grey-trunk",
+      "dead-tree-desert"
+    }
+
+    for _, tree_name in pairs(dead_tree_candidates) do
+      if data.raw.tree[tree_name] then
+        entity_settings[tree_name] =
+        {
+          frequency = 0.25,
+          size = 0.4,
+          richness = 0.3
+        }
+      end
+    end
+  end
+
   return
   {
     property_expression_names =
@@ -39,7 +64,7 @@ planet_map_gen.mithras = function()
       temperature = "temperature_basic",
       moisture = "moisture_basic",
       aux = "aux_basic",
-      cliffiness = "fulgora_cliffiness",
+      cliffiness = "fulgora_cliffiness * 0.55",
       cliff_elevation = "cliff_elevation_from_elevation",
     },
     cliff_settings =
@@ -52,9 +77,9 @@ planet_map_gen.mithras = function()
       -- Also there needs to be a large cliff drop at the coast to avoid the janky cliff smoothing
       -- but it also fails if a corner goes below zero, so we need an extra buffer of 40.
       -- So the first cliff is at 80, and terrain near the cliff shouln't go close to 0 (usually above 40).
-      cliff_elevation_interval = 40,
+      cliff_elevation_interval = 60,
       cliff_smoothing = 0, -- This is critical for correct cliff placement on the coast.
-      richness = 0.95
+      richness = 0.45
     },
     autoplace_controls =
     {
@@ -80,11 +105,7 @@ planet_map_gen.mithras = function()
       },
       ["entity"] =
       {
-        settings =
-        {
-          -- Mithras should feel like open desert, not a ruin scrapyard.
-          ["big-fulgora-rock"] = {}
-        }
+        settings = entity_settings
       }
     }
   }
