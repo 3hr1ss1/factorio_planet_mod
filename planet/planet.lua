@@ -5,7 +5,7 @@ local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-de
 local planet = {
   {
         type = "planet",
-        name = "mithras",
+        name = "Mithras",
         icon = "__factorio_planet_mod__/assets/mithras.png",
         starmap_icon = "__factorio_planet_mod__/assets/starmap-planet-mithras.png",
         starmap_icon_size = 512,
