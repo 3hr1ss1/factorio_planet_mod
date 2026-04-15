@@ -2,7 +2,36 @@ local planet_map_gen = require("__space-age__/prototypes/planet/planet-map-gen")
 
 --PLANET MAP GEN
 planet_map_gen.mithras = function()
-    return
+  local tile_settings = {}
+  local has_custom_mithras_tiles = false
+
+  -- Prefer custom Mithras desert tiles when they exist.
+  -- Only fall back to Fulgora tiles if none of the custom tiles are present.
+  if data and data.raw and data.raw.tile then
+    local function add_custom_tile(tile_name)
+      if data.raw.tile[tile_name] then
+        tile_settings[tile_name] = {}
+        has_custom_mithras_tiles = true
+      end
+    end
+
+    add_custom_tile("mithras-desert")
+    add_custom_tile("mithras-desert-0")
+    add_custom_tile("mithras-desert-1")
+    add_custom_tile("mithras-desert-2")
+    add_custom_tile("mithras-desert-3")
+    add_custom_tile("mithras-dunes")
+    add_custom_tile("mithras-rock")
+  end
+
+  if not has_custom_mithras_tiles then
+    tile_settings["fulgoran-sand"] = {}
+    tile_settings["fulgoran-dunes"] = {}
+    tile_settings["fulgoran-dust"] = {}
+    tile_settings["fulgoran-rock"] = {}
+  end
+
+  return
   {
     property_expression_names =
     {
@@ -29,33 +58,20 @@ planet_map_gen.mithras = function()
     },
     autoplace_controls =
     {
-      ["scrap"] = {},
-      --["fulgora_islands"] = {},
+      -- Keep this for compatibility with Fulgora cliff control.
       ["fulgora_cliff"] = {},
     },
     autoplace_settings =
     {
       ["tile"] =
       {
-        settings =
-        {
-          --["mithras-desert"] = {},
-          ["fulgoran-rock"] = {},
-          ["fulgoran-dust"] = {},
-          ["fulgoran-sand"] = {},
-          ["fulgoran-dunes"] = {},
-          ["fulgoran-walls"] = {},
-          ["fulgoran-paving"] = {},
-          ["fulgoran-conduit"] = {},
-          ["fulgoran-machinery"] = {},
-        }
+        settings = tile_settings
       },
       ["decorative"] =
       {
         settings =
         {
-          ["fulgoran-ruin-tiny"] = {},
-          ["fulgoran-gravewort"] = {},
+          -- Keep sparse, natural desert clutter.
           ["urchin-cactus"] = {},
           ["medium-fulgora-rock"] = {},
           ["small-fulgora-rock"] = {},
@@ -66,16 +82,7 @@ planet_map_gen.mithras = function()
       {
         settings =
         {
-          ["scrap"] = {},
-          ["fulgoran-ruin-vault"] = {},
-          ["fulgoran-ruin-attractor"] = {},
-          ["fulgoran-ruin-colossal"] = {},
-          ["fulgoran-ruin-huge"] = {},
-          ["fulgoran-ruin-big"] = {},
-          ["fulgoran-ruin-stonehenge"] = {},
-          ["fulgoran-ruin-medium"] = {},
-          ["fulgoran-ruin-small"] = {},
-          ["fulgurite"] = {},
+          -- Mithras should feel like open desert, not a ruin scrapyard.
           ["big-fulgora-rock"] = {}
         }
       }
