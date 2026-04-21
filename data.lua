@@ -1,5 +1,6 @@
 --data.lua
 require("__factorio_planet_mod__.planet.mithras-tiles")
+require("__factorio_planet_mod__.planet.mithras-cactus")
 require("__factorio_planet_mod__.planet.planet")
 require("__factorio_planet_mod__.technology")
 
