@@ -33,6 +33,12 @@ planet_map_gen.mithras = function()
   end
 
   entity_settings["big-fulgora-rock"] = {}
+  entity_settings["mithras-cactus"] =
+  {
+    frequency = 0.00001,
+    size = 0.01,
+    richness = 0.2
+  }
 
   -- Follow Muluna's guarded autoplace style: only include tree entities that exist.
   if data and data.raw and data.raw.tree then
