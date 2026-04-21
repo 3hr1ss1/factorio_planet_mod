@@ -1,5 +1,4 @@
 local resource_autoplace = require("resource-autoplace")
-local util = require("__bztitanium__.data-util")
 local item_sounds = require("__base__.prototypes.item_sounds")
 
 data.raw.planet.mithras.map_gen_settings.autoplace_controls["silicon-ore"] = {}
@@ -22,7 +21,7 @@ data:extend({
         icon_size = 64,
         icon_mipmaps = 3,
         name = "silicon-ore",
-        icon = "__factorio_planet_mod__/assets/silicia-ore-ground.png",
+        icon = "__factorio_planet_mod__/assets/silicia_ore.png",
         flags = { "placeable-neutral" },
         order = "a-b-a",
         map_color = { r = 1, g = 1, b = 1 },
@@ -51,7 +50,7 @@ data:extend({
                 size = 128,
                 frame_count = 8,
                 variation_count = 8,
-                scale = 0.5,
+                scale = 0.45,
             },
         },
     },
@@ -60,34 +59,19 @@ data:extend({
         name = "silicon-ore",
         icon_size = 64,
         icon_mipmaps = 3,
-        icon = "__factorio_planet_mod__/assets/silicia-ore-ground.png",
+        icon = "__factorio_planet_mod__/assets/silicia_ore.png",
         inventory_move_sound = item_sounds.resource_inventory_move,
         pick_sound = item_sounds.resource_inventory_pickup,
         drop_sound = item_sounds.resource_inventory_move,
         pictures = {
             {
-                filename = "__factorio_planet_mod__/assets/silicia-ore-ground.png",
-                size = 64,
-                scale = 0.5,
-            },
-            {
-                filename = "__factorio_planet_mod__/assets/silicia-ore-ground.png",
-                size = 64,
-                scale = 0.5,
-            },
-            {
-                filename = "__factorio_planet_mod__/assets/silicia-ore-ground.png",
-                size = 64,
-                scale = 0.5,
-            },
-            {
-                filename = "__factorio_planet_mod__/assets/silicia-ore-ground.png",
+                filename = "__factorio_planet_mod__/assets/silicia_ore.png",
                 size = 64,
                 scale = 0.5,
             },
         },
         subgroup = "raw-resource",
         order = "t-c-a",
-        stack_size = util.get_stack_size(50),
+        stack_size = 50,
     },
 })
