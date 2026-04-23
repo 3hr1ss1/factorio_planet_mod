@@ -53,3 +53,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
   + A better assembly machine for science crafting. Only Machine to craft the Laser-Science pack
   + Max Base Crafting Speed 4
   + Base Productivity 50%
+- Dedicated Storage Chest
+  + A different storage chest for bot bases, that allows to only store 1 item but in infinite quantity
+  + Chests item capacity is (nearly) infinity
+  + Chests different item amount is caped at 1
