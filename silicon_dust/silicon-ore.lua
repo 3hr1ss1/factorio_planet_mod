@@ -1,8 +1,10 @@
 local resource_autoplace = require("resource-autoplace")
 local item_sounds = require("__base__.prototypes.item_sounds")
 
-data.raw.planet.mithras.map_gen_settings.autoplace_controls["silicon-ore"] = {}
-data.raw.planet.mithras.map_gen_settings.autoplace_settings.entity.settings["silicon-ore"] = {}
+data.raw.planet.mithras.map_gen_settings.autoplace_controls["silicon-ore"] =
+    { freqency = 6767, size = 1, richness = 1 }
+data.raw.planet.mithras.map_gen_settings.autoplace_settings.entity.settings["silicon-ore"] =
+    { freqency = 6767, size = 1, richness = 1 }
 
 data:extend({
     {
@@ -37,7 +39,8 @@ data:extend({
         autoplace = resource_autoplace.resource_autoplace_settings({
             name = "silicon-ore",
             order = "a-t",
-            base_density = mods["space-age"] and 5 or 3,
+            base_density = 8,
+            frequency_multiplier = 2,
             has_starting_area_placement = false,
             regular_rq_factor_multiplier = 0.8,
         }),
