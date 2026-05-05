@@ -1,8 +1,7 @@
--- TODO: SMELTING DOESNT WORK Somehow the ingredient isnt recognized correctly.
--- Titanium smelting
+-- Silicon smelting
 
 local util = require("__factorio_planet_mod__.util")
--- local item_sounds = require("__base__.prototypes.item_sounds")
+local item_sounds = require("__base__.prototypes.item_sounds")
 
 data:extend({
     {
@@ -12,34 +11,20 @@ data:extend({
         category = "smelting",
         order = "d[silicon-ingot]",
         icons = nil,
-        --     {{
-        --         icon = "__factorio_planet_mod__/assets/silicia_bar.png",
-        --         icon_size = 64,
-        --         icon_mipmaps = 3,
-        --     },
-        --     {
-        --         icon = "__factorio_planet_mod__/assets/silicia_ore.png",
-        --         icon_size = 64,
-        --         icon_mipmaps = 3,
-        --         scale = 0.25,
-        --         shift = { -8, -8 },
-        --     },
-        -- },
-        enabled = false,
+        enabled = true,
         allow_productivity = true,
         energy_required = 8,
         ingredients = {
-            util.item("silicon-ore", (mods["space-age"] and 10 or 5)),
+            util.item("silicon-ore", 1),
         },
         results = {
             util.item("SiliconIngot"),
         },
-        -- expensive =
-        -- {
-        --   energy_required = 16,
-        --   ingredients = {{"titanium-ore", 10}},
-        --   result = util.me.titanium_plate
-        -- }
+        expensive = {
+            energy_required = 16,
+            ingredients = { { "silicon-ore", 1 } },
+            result = "SiliconIngot",
+        },
     },
     {
         type = "item",
@@ -51,9 +36,9 @@ data:extend({
         order = "b[silicium-ingot]",
         stack_size = 100,
         weight = 1 * kg,
-        -- inventory_move_sound = item_sounds.metal_small_inventory_move,
-        -- pick_sound = item_sounds.metal_small_inventory_pickup,
-        -- drop_sound = item_sounds.metal_small_inventory_move,
+        inventory_move_sound = item_sounds.metal_small_inventory_move,
+        pick_sound = item_sounds.metal_small_inventory_pickup,
+        drop_sound = item_sounds.metal_small_inventory_move,
     },
     -- {
     --     type = "technology",
