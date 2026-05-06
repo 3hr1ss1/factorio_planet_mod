@@ -6,6 +6,7 @@ require("__factorio_planet_mod__.technology")
 require("silicon_dust.silicon-ore")
 require("silicon_dust.silicon-ore-particle")
 require("silicon_dust.silicon-recipes")
+require("short_inserter.data")
 
 local assemblingMachine4 = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"]) -- copy the table that defines the heavy armor item into the fireArmor variable
 
