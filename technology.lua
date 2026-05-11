@@ -31,6 +31,36 @@ data:extend({
             },
             time = 60
         }
+    },
+    {
+        type = "technology",
+        name = "nuclear-artillery",
+        icon = "__base__/graphics/icons/artillery-shell.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        effects =
+        {
+            {
+                type = "unlock-recipe",
+                recipe = "nuclear-artillery-shell"
+            }
+        },
+        prerequisites = {"atomic-bomb", "planet-discovery-mithras", "artillery"},
+        unit =
+        {
+            count = 1000,
+            ingredients =
+            {
+                { "automation-science-pack",      1 },
+                { "logistic-science-pack",        1 },
+                { "chemical-science-pack",        1 },
+                { "military-science-pack",        1 },
+                { "production-science-pack",      1 },
+                { "utility-science-pack",         1 },
+                { "space-science-pack",           1 }
+            },
+            time = 60
+        }
     }
 })
 
