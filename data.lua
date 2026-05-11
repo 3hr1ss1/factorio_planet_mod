@@ -9,6 +9,7 @@ require("silicon_dust.silicon-recipes")
 require("short_inserter.data")
 require("prototypes.dedicated-storage-chest")
 require("prototypes.solar-oven")
+require("prototypes.solar-science-pack")
 
 local assemblingMachine4 = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"]) -- copy the table that defines the heavy armor item into the fireArmor variable
 
