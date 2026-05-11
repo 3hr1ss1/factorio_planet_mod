@@ -34,7 +34,7 @@ local planet = {
         {
           ["day-night-cycle"] = 1.5 * minute,
           ["magnetic-field"] = 10,
-          ["solar-power"] = 200,
+          ["solar-power"] = 500,
           pressure = 80,--50,
           gravity = 2.4, --2,
           --["rubia-wind-speed"] = 300,
