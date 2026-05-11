@@ -2,7 +2,7 @@
 data:extend({
     {
         type = "optimized-particle",
-        name = "corse-sand-particle",
+        name = "coarse-sand-particle",
         flags = { "not-on-map" },
         life_time = 180,
         pictures = nil,
