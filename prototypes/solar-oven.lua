@@ -12,7 +12,7 @@ solar_oven.icons = {
         icon_size = 612 -- using height to square it off roughly
     }
 }
-solar_oven.crafting_speed = 4
+solar_oven.crafting_speed = 6
 solar_oven.effect_receiver = {
     base_effect = {
         productivity = 0.4

@@ -62,19 +62,12 @@ data:extend({
     {
         type = "item",
         name = "coarse-sand",
-        icon_size = 64,
-        icon_mipmaps = 3,
-        icon = "__factorio_planet_mod__/assets/silicia_ore.png",
+        icon_size = 256,
+        icon_mipmaps = 4,
+        icon = "__factorio_planet_mod__/assets/coarse-sand.png",
         inventory_move_sound = item_sounds.resource_inventory_move,
         pick_sound = item_sounds.resource_inventory_pickup,
         drop_sound = item_sounds.resource_inventory_move,
-        pictures = {
-            {
-                filename = "__factorio_planet_mod__/assets/silicia_ore.png",
-                size = 64,
-                scale = 0.5,
-            },
-        },
         subgroup = "raw-resource",
         order = "t-c-a",
         stack_size = 50,

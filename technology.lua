@@ -76,6 +76,14 @@ data:extend({
             {
                 type = "unlock-recipe",
                 recipe = "coarse-sand-centrifuging"
+            },
+             {
+                type = "unlock-recipe",
+                recipe = "coarse-sand-centrifuging"
+            },
+             {
+                type = "unlock-recipe",
+                 recipe = "stone-centrifuging"
             }
         },
         research_trigger =
