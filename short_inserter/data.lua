@@ -42,8 +42,9 @@ local recipe = {
     name = "short-handed-inserter",
     enabled = true,
     ingredients = {
-        { type = "item", name = "copper-plate", amount = 200 },
-        { type = "item", name = "steel-plate", amount = 50 },
+        { type = "item", name = "iron-plate", amount = 1 },
+        { type = "item", name = "iron-gear-wheel", amount = 1 },
+        { type = "item", name = "inserter", amount = 1 },
     },
     results = { { type = "item", name = "short-handed-inserter", amount = 1 } },
 }
