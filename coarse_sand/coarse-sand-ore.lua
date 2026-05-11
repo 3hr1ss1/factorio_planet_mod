@@ -79,4 +79,24 @@ data:extend({
         order = "t-c-a",
         stack_size = 50,
     },
+    {
+        type = "item",
+        name = "silica-sand",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        icon = "__base__/graphics/icons/stone.png",
+        inventory_move_sound = item_sounds.resource_inventory_move,
+        pick_sound = item_sounds.resource_inventory_pickup,
+        drop_sound = item_sounds.resource_inventory_move,
+        pictures = {
+            {
+                filename = "__base__/graphics/icons/stone.png",
+                size = 64,
+                scale = 0.5,
+            },
+        },
+        subgroup = "raw-resource",
+        order = "t-c-b",
+        stack_size = 50,
+    },
 })

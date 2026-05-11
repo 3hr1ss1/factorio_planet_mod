@@ -3,58 +3,25 @@
 local util = require("__factorio_planet_mod__.util")
 local item_sounds = require("__base__.prototypes.item_sounds")
 
--- data:extend({
--- {
---     type = "recipe",
---     name = "coarse-sand-recipe",
---     main_product = "SiliconIngot",
---     category = "smelting",
---     order = "d[silicon-ingot]",
---     icons = nil,
---     enabled = true,
---     allow_productivity = true,
---     energy_required = 8,
---     ingredients = {
---         util.item("silicon-ore", 1),
---     },
---     results = {
---         util.item("SiliconIngot"),
---     },
---     expensive = {
---         energy_required = 16,
---         ingredients = { { "silicon-ore", 1 } },
---         result = "SiliconIngot",
---     },
--- },
--- {
---     type = "item",
---     name = "SiliconIngot",
---     icon = "__factorio_planet_mod__/assets/silicia_bar.png",
---     icon_size = 64,
---     icon_mipmaps = 3,
---     subgroup = "raw-material",
---     order = "b[silicium-ingot]",
---     stack_size = 100,
---     weight = 1 * kg,
---     inventory_move_sound = item_sounds.metal_small_inventory_move,
---     pick_sound = item_sounds.metal_small_inventory_pickup,
---     drop_sound = item_sounds.metal_small_inventory_move,
--- },
--- {
---     type = "technology",
---     name = "titanium-processing",
---     icon_size = 256,
---     icon_mipmaps = 4,
---     icon = "__factorio_planet_mod__/assets/silicia_bar.png",
---     effects = {
---         -- TODO: Make this get the laser science pack if this is crafted and glass
---         -- {
---         --     type = "unlock-recipe",
---         --     recipe = util.me.titanium_plate,
---         -- },
---     },
---     research_trigger = { type = "mine-entity", entity = "silicon-ore" },
---     prerequisites = {},
---     order = "b-b",
--- },
--- })
+data:extend({
+    {
+        type = "recipe",
+        name = "coarse-sand-centrifuging",
+        category = "centrifuging",
+        subgroup = "raw-resource",
+        order = "a[coarse-sand-centrifuging]",
+        enabled = false,
+        energy_required = 8,
+        ingredients = {
+            { type = "item", name = "coarse-sand", amount = 10 },
+        },
+        results = {
+            { type = "item", name = "silica-sand", amount_min = 7, amount_max = 8 },
+            { type = "item", name = "iron-ore", amount_min = 1, amount_max = 2 },
+            { type = "item", name = "copper-ore", amount = 1 },
+        },
+        icon = "__factorio_planet_mod__/assets/silicia_ore.png",
+        icon_size = 64,
+        allow_productivity = true,
+    }
+})
