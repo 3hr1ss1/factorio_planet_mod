@@ -1,0 +1,27 @@
+-- Silicon smelting
+
+local util = require("__factorio_planet_mod__.util")
+local item_sounds = require("__base__.prototypes.item_sounds")
+
+data:extend({
+    {
+        type = "recipe",
+        name = "coarse-sand-centrifuging",
+        category = "centrifuging",
+        subgroup = "raw-resource",
+        order = "a[coarse-sand-centrifuging]",
+        enabled = false,
+        energy_required = 8,
+        ingredients = {
+            { type = "item", name = "coarse-sand", amount = 10 },
+        },
+        results = {
+            { type = "item", name = "silica-sand", amount_min = 7, amount_max = 8 },
+            { type = "item", name = "iron-ore", amount_min = 1, amount_max = 2 },
+            { type = "item", name = "copper-ore", amount = 1 },
+        },
+        icon = "__factorio_planet_mod__/assets/silicia_ore.png",
+        icon_size = 64,
+        allow_productivity = true,
+    }
+})

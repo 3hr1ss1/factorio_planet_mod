@@ -72,6 +72,10 @@ data:extend({
             {
                 type = "unlock-recipe",
                 recipe = "SiliconIngot-recipe"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = "coarse-sand-centrifuging"
             }
         },
         research_trigger =
@@ -108,6 +112,6 @@ data:extend({
             time = 30
         },
         order = "c-a"
-    }
+    },
 })
 
