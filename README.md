@@ -21,7 +21,7 @@ fluid pumps”.
 ### Ressource Gaining
 
 - Gaining **energy** by using solar
-- Gaining **wood** by harvesting dead bush
+- Gaining **wood** by harvesting ~~dead bush~~ cacti
 - Gaining **coarse sand** by mining anywhere
 - Gaining **silicon dust** by mining silicon deposit
 
