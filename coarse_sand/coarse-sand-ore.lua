@@ -2,16 +2,16 @@ local resource_autoplace = require("resource-autoplace")
 local item_sounds = require("__base__.prototypes.item_sounds")
 
 -- TODO: Comment this out when the miner is implemented
-data.raw.planet.mithras.map_gen_settings.autoplace_controls["silicon-ore"] =
+data.raw.planet.mithras.map_gen_settings.autoplace_controls["coarse-sand"] =
     { freqency = 6767, size = 1, richness = 1 }
-data.raw.planet.mithras.map_gen_settings.autoplace_settings.entity.settings["silicon-ore"] =
+data.raw.planet.mithras.map_gen_settings.autoplace_settings.entity.settings["coarse-sand"] =
     { freqency = 6767, size = 1, richness = 1 }
 
 data:extend({
     {
         type = "autoplace-control",
         category = "resource",
-        name = "corse-sand",
+        name = "coarse-sand",
         richness = true,
         order = "a-t",
     },
@@ -23,23 +23,23 @@ data:extend({
         type = "resource",
         icon_size = 64,
         icon_mipmaps = 3,
-        name = "silicon-ore",
+        name = "coarse-sand",
         icon = "__factorio_planet_mod__/assets/silicia_ore.png",
         flags = { "placeable-neutral" },
         order = "a-b-a",
         map_color = { r = 1, g = 1, b = 1 },
         minable = {
             hardness = 1,
-            mining_particle = "corse-sand-particle",
+            mining_particle = "coarse-sand-particle",
             mining_time = 2,
-            result = "corse-sand",
+            result = "coarse-sand",
         },
         collision_box = { { -0.1, -0.1 }, { 0.1, 0.1 } },
         selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } },
 
         -- TODO: Comment this out when the miner is implemented
         autoplace = resource_autoplace.resource_autoplace_settings({
-            name = "corse-sand",
+            name = "coarse-sand",
             order = "a-t",
             base_density = 8,
             frequency_multiplier = 2,
@@ -61,7 +61,7 @@ data:extend({
     },
     {
         type = "item",
-        name = "corse-sand",
+        name = "coarse-sand",
         icon_size = 64,
         icon_mipmaps = 3,
         icon = "__factorio_planet_mod__/assets/silicia_ore.png",
