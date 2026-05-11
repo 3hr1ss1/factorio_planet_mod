@@ -11,7 +11,7 @@ data:extend({
         category = "smelting",
         order = "d[silicon-ingot]",
         icons = nil,
-        enabled = true,
+        enabled = false,
         allow_productivity = true,
         energy_required = 8,
         ingredients = {

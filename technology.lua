@@ -61,6 +61,52 @@ data:extend({
             },
             time = 60
         }
+    },
+    {
+        type = "technology",
+        name = "silicon-processing",
+        icon = "__factorio_planet_mod__/assets/silicia_bar.png",
+        icon_size = 64,
+        effects =
+        {
+            {
+                type = "unlock-recipe",
+                recipe = "SiliconIngot-recipe"
+            }
+        },
+        research_trigger =
+        {
+            type = "mine-entity",
+            entity = "silicon-ore"
+        },
+        order = "b-b"
+    },
+    {
+        type = "technology",
+        name = "solar-oven",
+        icon = "__factorio_planet_mod__/assets/solar-oven-icon.png",
+        icon_size = 612,
+        effects =
+        {
+            {
+                type = "unlock-recipe",
+                recipe = "solar-oven"
+            }
+        },
+        prerequisites = {"silicon-processing", "advanced-material-processing-2"},
+        unit =
+        {
+            count = 250,
+            ingredients =
+            {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 },
+                { "production-science-pack", 1 }
+            },
+            time = 30
+        },
+        order = "c-a"
     }
 })
 
