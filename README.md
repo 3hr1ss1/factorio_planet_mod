@@ -35,6 +35,7 @@ fluid pumps”.
 
 ### Buildings
 
+- solar panel mk2 (using glass as ingredient)
 - Short handed Inserter
   - Puts Items on the front row of the belt, instead of the back one
   - 432°/s Rotation Speed
