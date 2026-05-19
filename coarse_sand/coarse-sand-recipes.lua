@@ -44,5 +44,31 @@ data:extend({
         icon_size = 256,
         icon_mipmaps = 4,
         allow_productivity = true,
+    },
+    {
+        type = "item",
+        name = "glass",
+        icon = "__base__/graphics/icons/plastic-bar.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        subgroup = "raw-material",
+        order = "a[glass]",
+        stack_size = 100
+    },
+    {
+        type = "recipe",
+        name = "glass",
+        category = "smelting",
+        subgroup = "raw-material",
+        order = "a[glass]",
+        enabled = true,
+        energy_required = 3.2,
+        ingredients = {
+            { type = "item", name = "silica-sand", amount = 1 },
+        },
+        results = {
+            { type = "item", name = "glass", amount = 1 }
+        },
+        allow_productivity = true
     }
 })
