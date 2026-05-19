@@ -73,4 +73,5 @@ fluid pumps”.
   - Farms basic ores anywhere else (very slow)
 
  ### Mobs & Spawners
-- 
+- melee mob
+- rannged mob (worm that is unhittable if moving and can only be shot if above grount/ stationary)
