@@ -10,6 +10,10 @@ end
 local nuclear_artillery_shell = table.deepcopy(data.raw["ammo"]["artillery-shell"])
 nuclear_artillery_shell.name = "nuclear-artillery-shell"
 nuclear_artillery_shell.ammo_type.action.action_delivery.projectile = "nuclear-artillery-projectile"
+nuclear_artillery_shell.icon = "__factorio_planet_mod__/assets/nuclear-artillery-shell.png"
+nuclear_artillery_shell.icon_size = 64
+nuclear_artillery_shell.icon_mipmaps = 4
+nuclear_artillery_shell.icons = nil
 
 
 data:extend(
