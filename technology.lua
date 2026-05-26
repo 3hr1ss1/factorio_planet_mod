@@ -76,6 +76,14 @@ data:extend({
             {
                 type = "unlock-recipe",
                 recipe = "coarse-sand-centrifuging"
+            },
+             {
+                type = "unlock-recipe",
+                recipe = "coarse-sand-centrifuging"
+            },
+             {
+                type = "unlock-recipe",
+                 recipe = "stone-centrifuging"
             }
         },
         research_trigger =
@@ -108,6 +116,60 @@ data:extend({
                 { "chemical-science-pack", 1 },
                 { "production-science-pack", 1 },
                 { "solar-science-pack", 1 }
+            },
+            time = 30
+        },
+        order = "c-a"
+    },
+    {
+        type = "technology",
+        name = "solar-energy-mk2",
+        icon = "__base__/graphics/technology/solar-energy.png",
+        icon_size = 256,
+        icon_mipmaps = 4,
+        effects =
+        {
+            {
+                type = "unlock-recipe",
+                recipe = "solar-panel-mk2"
+            }
+        },
+        prerequisites = {"solar-energy", "effect-transmission", "solar-science-pack"},
+        unit =
+        {
+            count = 500,
+            ingredients =
+            {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 },
+                { "solar-science-pack", 1 }
+            },
+            time = 30
+        },
+        order = "a-h-b"
+    },
+    {
+        type = "technology",
+        name = "solar-science-pack",
+        icon = "__factorio_planet_mod__/assets/solar-science-pack.png",
+        icon_size = 64,
+        effects =
+        {
+            {
+                type = "unlock-recipe",
+                recipe = "solar-science-pack"
+            }
+        },
+        prerequisites = {"solar-oven"},
+        unit =
+        {
+            count = 50,
+            ingredients =
+            {
+                {"automation-science-pack", 1},
+                {"logistic-science-pack", 1},
+                {"chemical-science-pack", 1}
             },
             time = 30
         },
