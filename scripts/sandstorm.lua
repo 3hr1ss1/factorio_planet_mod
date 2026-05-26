@@ -5,6 +5,11 @@ local SECONDS_PER_TICK = 1 / 60
 local SPAWN_SEARCH_RADIUS = 256
 local SPAWN_ATTEMPTS = 48
 local PARTICLES_PER_UPDATE = 16
+local CHUNK_SIZE = 32
+local STORM_DAMAGE_AMOUNT = 1
+local STORM_DAMAGE_INTERVAL_TICKS = 60
+local STORM_DAMAGE_TYPE = "physical"
+local STORM_DAMAGE_FORCE_NAME = "neutral"
 local PERSIST = storage
 local MOD_SCRIPT_NAME = script.mod_name
 
@@ -234,6 +239,100 @@ local function point_in_storm(storm, position)
   return (norm_x * norm_x + norm_y * norm_y) <= 1
 end
 
+local function get_storm_damage_force()
+  local force = game.forces[STORM_DAMAGE_FORCE_NAME]
+  if force ~= nil and force.valid then
+    return force
+  end
+  return game.forces.player
+end
+
+local function entity_can_be_damaged(entity)
+  if not entity.valid or not entity.is_entity_with_health then
+    return false
+  end
+  local health = entity.health
+  return health ~= nil and health > 0
+end
+
+local function entity_in_storm(storm, entity)
+  if point_in_storm(storm, entity.position) then
+    return true
+  end
+
+  local bbox = entity.bounding_box
+  if bbox == nil then
+    return false
+  end
+
+  local center = {
+    x = (bbox.left_top.x + bbox.right_bottom.x) / 2,
+    y = (bbox.left_top.y + bbox.right_bottom.y) / 2
+  }
+  if point_in_storm(storm, center) then
+    return true
+  end
+
+  return point_in_storm(storm, bbox.left_top)
+    or point_in_storm(storm, bbox.right_bottom)
+end
+
+local function damage_entity(entity, damage_force)
+  -- Factorio 2.0: damage(amount, force, type) — force is required.
+  entity.damage(STORM_DAMAGE_AMOUNT, damage_force, STORM_DAMAGE_TYPE)
+end
+
+local function apply_storm_damage(storm, surface, damage_force)
+  local search_radius = math.max(storm.radius_x, storm.radius_y)
+  local left_top = {
+    x = storm.position.x - search_radius,
+    y = storm.position.y - search_radius
+  }
+  local right_bottom = {
+    x = storm.position.x + search_radius,
+    y = storm.position.y + search_radius
+  }
+
+  for _, entity in pairs(surface.find_entities_filtered({area = {left_top, right_bottom}})) do
+    if entity_can_be_damaged(entity) and entity_in_storm(storm, entity) then
+      damage_entity(entity, damage_force)
+    end
+  end
+end
+
+local function get_forces_with_players_on_surface(surface)
+  local forces = {}
+  local seen = {}
+  for _, player in pairs(game.connected_players) do
+    if player.valid and player.surface.index == surface.index then
+      local force = player.force
+      if force.valid and not seen[force.index] then
+        seen[force.index] = true
+        forces[#forces + 1] = force
+      end
+    end
+  end
+  return forces
+end
+
+local function storm_visible_on_chart_for_force(force, storm, surface)
+  local radius = math.max(storm.radius_x, storm.radius_y)
+  local min_chunk_x = math.floor((storm.position.x - radius) / CHUNK_SIZE)
+  local max_chunk_x = math.floor((storm.position.x + radius) / CHUNK_SIZE)
+  local min_chunk_y = math.floor((storm.position.y - radius) / CHUNK_SIZE)
+  local max_chunk_y = math.floor((storm.position.y + radius) / CHUNK_SIZE)
+
+  for chunk_x = min_chunk_x, max_chunk_x do
+    for chunk_y = min_chunk_y, max_chunk_y do
+      if force.is_chunk_visible(surface, {x = chunk_x, y = chunk_y}) then
+        return true
+      end
+    end
+  end
+
+  return false
+end
+
 local function emit_storm_particles(rng, storm, surface)
   for _ = 1, PARTICLES_PER_UPDATE do
     local angle = random_float(rng, 0, math.pi * 2)
@@ -301,6 +400,43 @@ local function draw_storm_outline(storm, surface)
   })
 end
 
+local function draw_storm_on_chart_for_force(storm, surface, force)
+  local storm_radius = math.max(storm.radius_x, storm.radius_y)
+  local chart_forces = {force}
+
+  rendering.draw_circle({
+    color = {r = 0.88, g = 0.72, b = 0.4, a = 0.4},
+    radius = storm_radius,
+    filled = true,
+    target = storm.position,
+    surface = surface,
+    forces = chart_forces,
+    width = 1,
+    time_to_live = UPDATE_INTERVAL_TICKS + 1,
+    render_mode = "chart"
+  })
+
+  rendering.draw_circle({
+    color = {r = 0.93, g = 0.77, b = 0.45, a = 0.95},
+    radius = storm_radius,
+    filled = false,
+    target = storm.position,
+    surface = surface,
+    forces = chart_forces,
+    width = 2,
+    time_to_live = UPDATE_INTERVAL_TICKS + 1,
+    render_mode = "chart"
+  })
+end
+
+local function draw_storm_on_chart(storm, surface)
+  for _, force in ipairs(get_forces_with_players_on_surface(surface)) do
+    if storm_visible_on_chart_for_force(force, storm, surface) then
+      draw_storm_on_chart_for_force(storm, surface, force)
+    end
+  end
+end
+
 local function remove_expired_storms()
   for index = #PERSIST.sandstorm.active_storms, 1, -1 do
     local storm = PERSIST.sandstorm.active_storms[index]
@@ -358,12 +494,22 @@ function sandstorm.on_update()
 
   remove_expired_storms()
   local rng = PERSIST.sandstorm.rng
+  local apply_damage = false
+  if game.tick - (PERSIST.sandstorm.last_damage_tick or 0) >= STORM_DAMAGE_INTERVAL_TICKS then
+    PERSIST.sandstorm.last_damage_tick = game.tick
+    apply_damage = true
+  end
+  local damage_force = apply_damage and get_storm_damage_force() or nil
   for _, storm in pairs(PERSIST.sandstorm.active_storms) do
     update_storm_movement(storm)
     local surface = game.surfaces[storm.surface_index]
     if surface and surface.valid then
       draw_storm_outline(storm, surface)
+      draw_storm_on_chart(storm, surface)
       emit_storm_particles(rng, storm, surface)
+      if apply_damage then
+        apply_storm_damage(storm, surface, damage_force)
+      end
     end
   end
 
