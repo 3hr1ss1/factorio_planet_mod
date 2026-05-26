@@ -5,7 +5,7 @@ local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-de
 local planet = {
   {
         type = "planet",
-        name = "Mithras",
+        name = "mithras",
         icon = "__factorio_planet_mod__/assets/mithras.png",
         starmap_icon = "__factorio_planet_mod__/assets/starmap-planet-mithras.png",
         starmap_icon_size = 512,
@@ -34,7 +34,7 @@ local planet = {
         {
           ["day-night-cycle"] = 1.5 * minute,
           ["magnetic-field"] = 10,
-          ["solar-power"] = 200,
+          ["solar-power"] = 500,
           pressure = 80,--50,
           gravity = 2.4, --2,
           --["rubia-wind-speed"] = 300,
@@ -156,6 +156,8 @@ local planet = {
       {
         type = "space-connection",
         name = "vulcanus-mithras",
+        icon = "__factorio_planet_mod__/assets/mithras.png",
+        icon_size = 64,
         subgroup = "planet-connections",
         from = "vulcanus",
         to = "mithras",
@@ -166,6 +168,8 @@ local planet = {
       {
         type = "space-connection",
         name = "gleba-mithras",
+        icon = "__factorio_planet_mod__/assets/mithras.png",
+        icon_size = 64,
         subgroup = "planet-connections",
         from = "gleba",
         to = "mithras",
