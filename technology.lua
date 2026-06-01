@@ -175,5 +175,62 @@ data:extend({
         },
         order = "c-a"
     },
+    {
+        type = "technology",
+        name = "core-mining",
+        icon = "__space-age__/graphics/icons/big-mining-drill.png",
+        icon_size = 64,
+        effects =
+        {
+            { type = "unlock-recipe", recipe = "core-miner" },
+            { type = "unlock-recipe", recipe = "core-mining-basic" },
+            { type = "unlock-recipe", recipe = "core-mining-mithras" }
+        },
+        prerequisites = { "planet-discovery-mithras", "electric-mining-drill", "advanced-material-processing-2" },
+        unit =
+        {
+            count = 500,
+            ingredients =
+            {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack",   1 },
+                { "chemical-science-pack",   1 },
+                { "production-science-pack", 1 },
+                { "space-science-pack",      1 }
+            },
+            time = 30
+        },
+        order = "c-b"
+    },
+    {
+        type = "technology",
+        name = "advanced-core-mining",
+        icon = "__space-age__/graphics/icons/big-mining-drill.png",
+        icon_size = 64,
+        effects =
+        {
+            { type = "unlock-recipe", recipe = "advanced-core-mining-nauvis"   },
+            { type = "unlock-recipe", recipe = "advanced-core-mining-mithras"  },
+            { type = "unlock-recipe", recipe = "advanced-core-mining-vulcanus" },
+            { type = "unlock-recipe", recipe = "advanced-core-mining-fulgora"  },
+            { type = "unlock-recipe", recipe = "advanced-core-mining-gleba"    },
+            { type = "unlock-recipe", recipe = "advanced-core-mining-aquilo"   }
+        },
+        prerequisites = { "core-mining" },
+        unit =
+        {
+            count = 1000,
+            ingredients =
+            {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack",   1 },
+                { "chemical-science-pack",   1 },
+                { "production-science-pack", 1 },
+                { "space-science-pack",      1 }
+            },
+            time = 60
+        },
+        order = "c-c"
+    },
 })
 
