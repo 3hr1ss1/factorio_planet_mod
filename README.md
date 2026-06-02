@@ -35,6 +35,7 @@ fluid pumps”.
 
 ### Buildings
 
+- solar panel mk2 (using glass as ingredient)
 - Short handed Inserter
   - Puts Items on the front row of the belt, instead of the back one
   - 432°/s Rotation Speed
@@ -73,4 +74,5 @@ fluid pumps”.
   - Farms basic ores anywhere else (very slow)
 
  ### Mobs & Spawners
-- 
+- melee mob
+- rannged mob (worm that is unhittable if moving and can only be shot if above grount/ stationary)
