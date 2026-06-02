@@ -103,7 +103,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
 ### New Technology
 
 - Planet Discovery Mithras
-  - Unlocks: Travel to Mithras, Core Miner, Core Miner Basic Recipes, Core Pumpjack
+  - Unlocks: Travel to Mithras, Core Miner, Core Miner Basic Recipes, Core Pumpjack, Ion Dome
   - Requires: Space Platform Thruster Technolgy, Solar Energy Technology, Centrifuge Technology
   - Costs: {1000} red, green, blue, white, 60s
 
