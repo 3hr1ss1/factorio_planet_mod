@@ -1,12 +1,13 @@
--- Dedicated storage chest (single-item type)
-local base_chest = (data.raw["container"] or {})["steel-chest"]
+-- Dedicated storage chest: a logistic "storage" chest (bots deposit/withdraw) that the
+-- runtime locks to a single item type with near-infinite capacity.
+local base_chest = (data.raw["logistic-container"] or {})["storage-chest"]
 if not base_chest then
-    error("dedicated-storage-chest: missing base steel-chest prototype")
+    error("dedicated-storage-chest: missing base storage-chest prototype")
 end
 
 local chest = table.deepcopy(base_chest)
 chest.name = "dedicated-storage-chest"
-chest.icon = "__base__/graphics/icons/steel-chest.png"
+chest.icon = "__base__/graphics/icons/storage-chest.png"
 chest.icon_size = 64
 chest.icons = {
     {
@@ -16,7 +17,7 @@ chest.icons = {
     },
 }
 chest.minable = { mining_time = 0.2, result = "dedicated-storage-chest" }
-chest.inventory_size = 500
+chest.inventory_size = 2000
 chest.max_health = 350
 
 local item = {
