@@ -27,7 +27,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
 ### Products
 
 - Gaining **{5-7} stone, {1-3} silicia sand** by centrifuge **{10} coarse sand** 
-- Gaining **{7-8} stone, {1} copper ore, {1-2} iron ore** by centrifuge **{10} stone**
+- Gaining **{7-8} stone, {1} copper ore, {1-2} iron ore, {1} coal** by centrifuge **{10} stone**
 - Gaining **{1} glass** by smelting **{1} silicia sand**
 - Gaining **{1} silicon ingot** by smelting **{1} silicon dust**
 
@@ -92,7 +92,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
       - Mithras: {5} coarse sand
       - Else: {5} stone
     - Advanced Recipe: 
-      - Nauvis: {5} stone, {3} iron ore and {2} copper ore
+      - Nauvis: {5} stone, {2} iron ore, {1} copper ore and {1} coal
       - Vulcanos: {5} stone, {3} calcite, {1} tungsten ore
       - Fulgora: {5} stone, {3} scrap
       - Gleba: {5} stone, {2} sulfur
@@ -103,7 +103,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
 ### New Technology
 
 - Planet Discovery Mithras
-  - Unlocks: Travel to Mithras, Core Miner, Core Miner Basic Recipes
+  - Unlocks: Travel to Mithras, Core Miner, Core Miner Basic Recipes, Core Pumpjack
   - Requires: Space Platform Thruster Technolgy, Solar Energy Technology, Centrifuge Technology
   - Costs: {1000} red, green, blue, white, 60s
 
