@@ -1,50 +1,49 @@
+-- Dedicated storage chest runtime logic (single-item-type enforcement).
+-- Exposed as a module and wired through control.lua's central event handlers so it
+-- coexists with the sandstorm and solar-oven handlers instead of overwriting them.
+local dedicated_storage = {}
+
 local chest_name = "dedicated-storage-chest"
 local tick_interval = 10
 
-local function ensure_global()
-    if not global then
-        global = {}
-    end
-    global.dedicated_storage = global.dedicated_storage or {}
+local function ensure_state()
+    storage.dedicated_storage = storage.dedicated_storage or {}
 end
 
-local function spill_stack(surface, stack)
+-- Eject a mismatched stack onto the ground without destroying its contents.
+local function eject_stack(entity, stack)
+    local surface = entity.surface
     if not (surface and stack and stack.valid_for_read) then return end
-    local ok = pcall(function() surface.spill_item_stack(stack) end)
-    if not ok then
-        pcall(function() surface.spill_item_stack(surface, stack) end)
-    end
+    surface.spill_item_stack({
+        position = entity.position,
+        stack = stack,
+        enable_looted = false,
+        force = entity.force,
+    })
 end
 
-local function rebuild_index()
-    ensure_global()
-    global.dedicated_storage = {}
-    for _, surface in pairs(game.surfaces) do
-        local entities = surface.find_entities_filtered({ name = chest_name })
-        for _, entity in pairs(entities) do
-            global.dedicated_storage[entity.unit_number] = {
-                entity = entity,
-                item_name = nil,
-            }
-        end
-    end
+-- Keep the logistic storage filter in sync with the locked item so robots only
+-- deposit the matching item (instead of dumping wrong items we then eject in a loop).
+-- Pass nil to clear the filter when the chest empties.
+local function set_storage_filter(entity, item_name)
+    pcall(function() entity.storage_filter = item_name end)
 end
 
-local function track_entity(entity)
+local function track(entity)
     if not (entity and entity.valid) then return end
     if entity.name ~= chest_name then return end
-    ensure_global()
-    global.dedicated_storage[entity.unit_number] = {
+    ensure_state()
+    storage.dedicated_storage[entity.unit_number] = {
         entity = entity,
         item_name = nil,
     }
 end
 
-local function untrack_entity(entity)
+local function untrack(entity)
     if not (entity and entity.valid) then return end
     if entity.name ~= chest_name then return end
-    ensure_global()
-    global.dedicated_storage[entity.unit_number] = nil
+    ensure_state()
+    storage.dedicated_storage[entity.unit_number] = nil
 end
 
 local function manage_chest(entry)
@@ -58,12 +57,13 @@ local function manage_chest(entry)
     local is_empty = true
 
     if not locked_item then
-        -- Find the first item to lock it
+        -- First item to arrive becomes the locked type.
         for i = 1, #inv do
             local stack = inv[i]
             if stack.valid_for_read then
                 locked_item = stack.name
                 entry.item_name = locked_item
+                set_storage_filter(entity, locked_item)
                 is_empty = false
                 break
             end
@@ -76,47 +76,50 @@ local function manage_chest(entry)
             if stack.valid_for_read then
                 is_empty = false
                 if stack.name ~= locked_item then
-                    spill_stack(entity.surface, stack)
+                    eject_stack(entity, stack)
                     stack.clear()
                 end
             end
         end
     end
 
-    if is_empty then
+    if is_empty and entry.item_name then
+        -- Chest emptied: release the lock and filter so it can be repurposed.
         entry.item_name = nil
+        set_storage_filter(entity, nil)
     end
 
     return true
 end
 
-script.on_init(rebuild_index)
-script.on_configuration_changed(rebuild_index)
-
-script.on_event({
-    defines.events.on_built_entity,
-    defines.events.on_robot_built_entity,
-    defines.events.script_raised_built,
-    defines.events.script_raised_revive,
-}, function(event)
-    track_entity(event.created_entity or event.entity)
-end)
-
-script.on_event({
-    defines.events.on_pre_player_mined_item,
-    defines.events.on_robot_pre_mined,
-    defines.events.on_entity_died,
-    defines.events.script_raised_destroy,
-}, function(event)
-    untrack_entity(event.entity)
-end)
-
-script.on_event(defines.events.on_tick, function(event)
-    if (event.tick % tick_interval) ~= 0 then return end
-    ensure_global()
-    for unit, entry in pairs(global.dedicated_storage) do
-        if not manage_chest(entry) then
-            global.dedicated_storage[unit] = nil
+function dedicated_storage.on_init()
+    ensure_state()
+    for _, surface in pairs(game.surfaces) do
+        for _, entity in pairs(surface.find_entities_filtered({ name = chest_name })) do
+            track(entity)
         end
     end
-end)
+end
+
+-- Rebuild the index on config changes so existing chests survive mod updates.
+dedicated_storage.on_configuration_changed = dedicated_storage.on_init
+
+function dedicated_storage.on_built(entity)
+    track(entity)
+end
+
+function dedicated_storage.on_removed(entity)
+    untrack(entity)
+end
+
+function dedicated_storage.on_tick(tick)
+    if (tick % tick_interval) ~= 0 then return end
+    ensure_state()
+    for unit, entry in pairs(storage.dedicated_storage) do
+        if not manage_chest(entry) then
+            storage.dedicated_storage[unit] = nil
+        end
+    end
+end
+
+return dedicated_storage
