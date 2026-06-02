@@ -1,10 +1,7 @@
 local resource_autoplace = require("resource-autoplace")
 local item_sounds = require("__base__.prototypes.item_sounds")
 
-data.raw.planet.mithras.map_gen_settings.autoplace_controls["silicon-ore"] =
-    { freqency = 6767, size = 1, richness = 1 }
-data.raw.planet.mithras.map_gen_settings.autoplace_settings.entity.settings["silicon-ore"] =
-    { freqency = 6767, size = 1, richness = 1 }
+-- Mithras spawn frequency/size/richness for silicon-ore lives in planet/mithras-map-gen.lua.
 
 data:extend({
     {

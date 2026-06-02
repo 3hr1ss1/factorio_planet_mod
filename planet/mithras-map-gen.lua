@@ -40,6 +40,25 @@ planet_map_gen.mithras = function()
     richness = 0.2
   }
 
+  -- Silicon ore: the staple resource of Mithras, so spawn it generously.
+  entity_settings["silicon-ore"] =
+  {
+    frequency = 3,
+    size = 1.5,
+    richness = 1
+  }
+
+  -- Crude oil on Mithras: rare to find, but generous when you do.
+  -- Low frequency  -> few oil fields scattered far apart.
+  -- High size      -> each field that does spawn covers a large area (many wells).
+  -- High richness  -> each well yields a lot.
+  entity_settings["crude-oil"] =
+  {
+    frequency = 0.15,
+    size = 4,
+    richness = 2
+  }
+
   -- Follow Muluna's guarded autoplace style: only include tree entities that exist.
   if data and data.raw and data.raw.tree then
     local dead_tree_candidates =
@@ -91,6 +110,8 @@ planet_map_gen.mithras = function()
     {
       -- Keep this for compatibility with Fulgora cliff control.
       ["fulgora_cliff"] = {},
+      ["silicon-ore"] = { frequency = 3, size = 1.5, richness = 1 },
+      ["crude-oil"] = { frequency = 0.15, size = 4, richness = 2 },
     },
     autoplace_settings =
     {
