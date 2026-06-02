@@ -49,7 +49,7 @@ data:extend({
         type = "item",
         name = "glass",
         icon = "__factorio_planet_mod__/assets/glass.png",
-        icon_size = 256,
+        icon_size = 64,
         subgroup = "raw-material",
         order = "a[glass]",
         stack_size = 100

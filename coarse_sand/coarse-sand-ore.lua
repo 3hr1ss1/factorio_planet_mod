@@ -50,7 +50,7 @@ data:extend({
         stage_counts = { 15000, 9500, 5500, 2900, 1300, 400, 150, 80 },
         stages = {
             sheet = {
-                filename = "__factorio_planet_mod__/assets/silicia-ore-ground.png",
+                filename = "__factorio_planet_mod__/assets/silicia_ore_ground.png",
                 priority = "extra-high",
                 size = 128,
                 frame_count = 8,
