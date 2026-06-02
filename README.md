@@ -97,7 +97,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
       - Fulgora: {5} stone, {3} scrap
       - Gleba: {5} stone, {2} sulfur
       - Aquillo: {5} stone, {2} lithium
-      - Mithras: {8} coarse sand, {1} silicon ore
+      - Mithras: {8} coarse sand, {1} silicon ore, {1} iron ore, {1} copper ore
   - Recipe: {20} steel-plate, {2} electric-mining-drill, {10} advanced-circuit, {8} engine-unit
 
 ### New Technology
