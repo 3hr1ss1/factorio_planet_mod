@@ -121,6 +121,11 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
   - Unlocks: Solar Panel MK2
   - Requires: Solar Energy, Laser Science Pack
   - Costs: {1000} red, green, blue, purple, yellow, white, laser-science, 60s
+ 
+- Dedicated Storage Chest
+  - Unlocks: Dedicated Storage Chest
+  - Requires: Logistic System
+  - Costs: {500} red, green, blue, purple, yellow, white, laser-science, 30s
 
 - Advanced Core Mining
   - Unlocks: Core Miner Advanced Recipes
