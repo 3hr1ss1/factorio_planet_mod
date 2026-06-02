@@ -3,7 +3,9 @@ local sandstorm = {}
 local UPDATE_INTERVAL_TICKS = 2
 local SECONDS_PER_TICK = 1 / 60
 local SPAWN_SEARCH_RADIUS = 256
-local SPAWN_ATTEMPTS = 48
+local SPAWN_ATTEMPTS = 128
+local BUILDING_ANCHOR_SEARCH_RADIUS = 96
+local MAX_BUILDING_ANCHORS_PER_PLAYER = 24
 local PARTICLES_PER_UPDATE = 16
 local CHUNK_SIZE = 32
 local STORM_DAMAGE_AMOUNT = 1
@@ -42,10 +44,26 @@ local function clamp(value, min_value, max_value)
   return value
 end
 
-local function is_desert_tile(tile_name)
-  return string.find(tile_name, "sand", 1, true) ~= nil
+local function is_desert_tile(surface, tile_name)
+  if tile_name == nil then
+    return false
+  end
+
+  -- On Mithras we prefer all custom surface tiles and fulgoran desert fallbacks.
+  if surface ~= nil and surface.valid and surface.name == "mithras" then
+    if string.find(tile_name, "mithras-", 1, true) == 1 then
+      return true
+    end
+    if string.find(tile_name, "fulgoran-", 1, true) == 1 then
+      return true
+    end
+  end
+
+  return string.find(tile_name, "desert", 1, true) ~= nil
+    or string.find(tile_name, "sand", 1, true) ~= nil
     or string.find(tile_name, "dunes", 1, true) ~= nil
     or string.find(tile_name, "dust", 1, true) ~= nil
+    or string.find(tile_name, "rock", 1, true) ~= nil
 end
 
 local function has_player_on_surface(surface)
@@ -83,14 +101,69 @@ local function get_surface_players(surface)
   return players
 end
 
-local function sample_desert_position(rng, surface)
+local function add_anchor_position(anchors, seen, position)
+  local key = string.format("%d:%d", math.floor(position.x), math.floor(position.y))
+  if seen[key] then
+    return
+  end
+  seen[key] = true
+  anchors[#anchors + 1] = {x = position.x, y = position.y}
+end
+
+local function get_spawn_anchors(rng, surface)
+  local anchors = {}
+  local seen = {}
   local players = get_surface_players(surface)
   if #players == 0 then
+    return anchors
+  end
+
+  for _, player in pairs(players) do
+    add_anchor_position(anchors, seen, player.position)
+
+    local area = {
+      {
+        player.position.x - BUILDING_ANCHOR_SEARCH_RADIUS,
+        player.position.y - BUILDING_ANCHOR_SEARCH_RADIUS
+      },
+      {
+        player.position.x + BUILDING_ANCHOR_SEARCH_RADIUS,
+        player.position.y + BUILDING_ANCHOR_SEARCH_RADIUS
+      }
+    }
+    local entities = surface.find_entities_filtered({
+      area = area,
+      force = player.force,
+      type = {
+        "assembling-machine", "furnace", "mining-drill", "container", "logistic-container",
+        "turret", "ammo-turret", "electric-turret", "fluid-turret", "artillery-turret",
+        "lab", "reactor", "boiler", "generator", "solar-panel", "accumulator",
+        "roboport", "radar", "rocket-silo"
+      }
+    })
+
+    if #entities > 0 then
+      local limit = math.min(MAX_BUILDING_ANCHORS_PER_PLAYER, #entities)
+      for _ = 1, limit do
+        local entity = entities[random_int(rng, 1, #entities)]
+        if entity.valid then
+          add_anchor_position(anchors, seen, entity.position)
+        end
+      end
+    end
+  end
+
+  return anchors
+end
+
+local function sample_desert_position(rng, surface)
+  local anchors = get_spawn_anchors(rng, surface)
+  if #anchors == 0 then
     return nil
   end
 
   for _ = 1, SPAWN_ATTEMPTS do
-    local anchor = players[random_int(rng, 1, #players)].position
+    local anchor = anchors[random_int(rng, 1, #anchors)]
     local angle = random_float(rng, 0, math.pi * 2)
     local distance = random_float(rng, 24, SPAWN_SEARCH_RADIUS)
     local position = {
@@ -99,7 +172,7 @@ local function sample_desert_position(rng, surface)
     }
 
     local tile = surface.get_tile(position)
-    if tile.valid and is_desert_tile(tile.name) then
+    if tile.valid and is_desert_tile(surface, tile.name) then
       return position
     end
   end
@@ -109,7 +182,7 @@ end
 
 local function sample_desert_position_near(rng, surface, anchor, max_radius)
   local anchor_tile = surface.get_tile(anchor)
-  if anchor_tile.valid and is_desert_tile(anchor_tile.name) then
+  if anchor_tile.valid and is_desert_tile(surface, anchor_tile.name) then
     return {x = anchor.x, y = anchor.y}
   end
 
@@ -122,7 +195,7 @@ local function sample_desert_position_near(rng, surface, anchor, max_radius)
     }
 
     local tile = surface.get_tile(position)
-    if tile.valid and is_desert_tile(tile.name) then
+    if tile.valid and is_desert_tile(surface, tile.name) then
       return position
     end
   end
@@ -132,8 +205,8 @@ end
 
 local function schedule_next_spawn()
   local rng = PERSIST.sandstorm.rng
-  local min_minutes = get_global_setting("mithras-sandstorm-spawn-min-minutes") or 15
-  local max_minutes = get_global_setting("mithras-sandstorm-spawn-max-minutes") or 45
+  local min_minutes = get_global_setting("mithras-sandstorm-spawn-min-minutes") or 1
+  local max_minutes = get_global_setting("mithras-sandstorm-spawn-max-minutes") or 5
   if max_minutes < min_minutes then
     max_minutes = min_minutes
   end
@@ -367,7 +440,7 @@ end
 local function draw_storm_outline(storm, surface)
   local storm_radius = math.max(storm.radius_x, storm.radius_y)
   rendering.draw_circle({
-    color = {r = 0.88, g = 0.72, b = 0.4, a = 0.22},
+    color = {r = 0.44, g = 0.38, b = 0.24, a = 0.03},
     radius = storm_radius,
     filled = true,
     target = storm.position,
@@ -378,7 +451,7 @@ local function draw_storm_outline(storm, surface)
   })
 
   rendering.draw_circle({
-    color = {r = 0.88, g = 0.72, b = 0.4, a = 0.08},
+    color = {r = 0.44, g = 0.38, b = 0.24, a = 0.01},
     radius = storm_radius,
     filled = true,
     target = storm.position,
@@ -389,7 +462,7 @@ local function draw_storm_outline(storm, surface)
   })
 
   rendering.draw_circle({
-    color = {r = 0.93, g = 0.77, b = 0.45, a = 0.85},
+    color = {r = 0.52, g = 0.43, b = 0.27, a = 0.14},
     radius = storm_radius,
     filled = false,
     target = storm.position,
@@ -397,6 +470,29 @@ local function draw_storm_outline(storm, surface)
     draw_on_ground = true,
     width = 2,
     time_to_live = UPDATE_INTERVAL_TICKS + 1
+  })
+
+  -- Separate chart rendering for minimap/map view.
+  rendering.draw_circle({
+    color = {r = 0.44, g = 0.38, b = 0.24, a = 0.06},
+    radius = storm_radius,
+    filled = true,
+    target = storm.position,
+    surface = surface,
+    width = 1,
+    time_to_live = UPDATE_INTERVAL_TICKS + 1,
+    render_mode = "chart"
+  })
+
+  rendering.draw_circle({
+    color = {r = 0.52, g = 0.43, b = 0.27, a = 0.20},
+    radius = storm_radius,
+    filled = false,
+    target = storm.position,
+    surface = surface,
+    width = 2,
+    time_to_live = UPDATE_INTERVAL_TICKS + 1,
+    render_mode = "chart"
   })
 end
 

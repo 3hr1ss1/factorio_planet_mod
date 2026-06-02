@@ -3,7 +3,7 @@ data:extend({
     type = "int-setting",
     name = "mithras-sandstorm-spawn-min-minutes",
     setting_type = "runtime-global",
-    default_value = 15,
+    default_value = 1,
     minimum_value = 1,
     maximum_value = 120,
     order = "a-a"
@@ -12,7 +12,7 @@ data:extend({
     type = "int-setting",
     name = "mithras-sandstorm-spawn-max-minutes",
     setting_type = "runtime-global",
-    default_value = 45,
+    default_value = 5,
     minimum_value = 1,
     maximum_value = 180,
     order = "a-b"
