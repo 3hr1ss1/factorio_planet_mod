@@ -149,3 +149,5 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
   - Requires: Craft Solar Precission Plant
 
 ### Mobs
+
+There are no mob spawners on Mithras. Mobs spawn within the moving sandstorm.
