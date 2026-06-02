@@ -73,7 +73,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
 - Ion-Dome
   - Description: Slows down surrounding storms to prevent players and the factory from damage
   - Parameter:
-  - Recipe:
+  - Recipe: {10} processing unit, {20} silicon ingot, {15} glass, {5} concrete, {50} steel plate
     
 - Solar Precission Plant
   - Description: A better assembly machine for science crafting. Allows crafting of all 12 science packs of base game and space age. Only Machine to craft the Laser-Science pack
@@ -103,34 +103,29 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
 ### New Technology
 
 - Planet Discovery Mithras
-  - Unlocks: Travel to Mithras
+  - Unlocks: Travel to Mithras, Core Miner, Core Miner Basic Recipes
   - Requires: Space Platform Thruster Technolgy, Solar Energy Technology, Centrifuge Technology
-  - Costs: 
+  - Costs: {1000} red, green, blue, white, 60s
 
 - Intercontinental Bombing
   - Unlocks: Nuclear Artillery Shell
   - Requires: Planet Discovery Mithras, Atomic Bomb, Artillery, Laser Science Pack
-  - Costs:
+  - Costs: {1500} red, green, black, blue, yellow, white, laser-science, 30s
 
 - Short-Handed Inserter
   - Unlocks: Short-Handed Inserter
   - Requires: Planet Discovery Mithras, Automation Technology, Laser Science Pack
-  - Costs: 
+  - Costs: {1000} red, green, blue, purple, yellow, white, laser-science, 60s
 
 - Solar Energy MK2
   - Unlocks: Solar Panel MK2
   - Requires: Solar Energy, Laser Science Pack
-  - Costs:
-    
-- Mining the Core
-  - Unlocks: Core Miner, Core Miner Basic Recipes
-  - Requires: Electric Mining Drill, Advanced Material Processing
-  - Costs:
+  - Costs: {1000} red, green, blue, purple, yellow, white, laser-science, 60s
 
 - Advanced Core Mining
   - Unlocks: Core Miner Advanced Recipes
-  - Requires: Mining the Core
-  - Costs:
+  - Requires: Planet Discovery Mithras
+  - Costs: {100} red, green, blue, purple, yellow, white, laser-science, 30s
 
 - Silicon Processing
   - Unlocks: Silicon Ingot Smelting
@@ -143,16 +138,14 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
 - Solar Oven
   - Unlocks: Solar Oven
   - Requires: Silicon Processing, Sand Processing, Advanced Material Processing
-  - Costs:
+  - Costs: {100} red, green, blue, purple, yellow, white, laser-science, 30s
 
 - Solar Precission Plant
   - Unlocks: Solar Precission Plant
-  - Requires: Silicon Processing, Sand Processing
-  - Costs: 
+  - Requires: Smelt 10 Silicon Ingot, Smelt 10 Glass
 
 - Laser Science Pack
   - Unlocks: Laser Science Pack
-  - Requires: Solar Precission Plant
-  - Costs: 
+  - Requires: Craft Solar Precission Plant
 
 ### Mobs
