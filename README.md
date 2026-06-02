@@ -137,7 +137,7 @@ Mithra is a desert-like planet on the fourth ring of the Factorio solar system. 
 
 - Solar Oven
   - Unlocks: Solar Oven
-  - Requires: Silicon Processing, Sand Processing, Advanced Material Processing
+  - Requires: Silicon Processing, Sand Processing, Advanced Material Processing, Solar Science Pack
   - Costs: {100} red, green, blue, purple, yellow, white, laser-science, 30s
 
 - Solar Precission Plant
