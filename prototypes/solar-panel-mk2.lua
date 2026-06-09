@@ -35,9 +35,10 @@ local solarPanel2Recipe = {
     energy_required = 10,
     enabled = false,
     ingredients = {
-        { type = "item", name = "glass", amount = 15 },
-        { type = "item", name = "solar-panel", amount = 1 },
-        { type = "item", name = "efficiency-module", amount = 2 }
+        { type = "item", name = "solar-panel", amount = 5 },
+        { type = "item", name = "efficiency-module", amount = 5 },
+        { type = "item", name = "glass", amount = 25 },
+        { type = "item", name = "SiliconIngot", amount = 5 }
     },
     results = {
         { type = "item", name = "solar-panel-mk2", amount = 1 }

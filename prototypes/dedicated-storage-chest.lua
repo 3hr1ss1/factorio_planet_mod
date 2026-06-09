@@ -34,10 +34,10 @@ local item = {
 local recipe = {
     type = "recipe",
     name = "dedicated-storage-chest",
-    enabled = true,
+    enabled = false,
     ingredients = {
-        { type = "item", name = "steel-chest", amount = 1 },
-        { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = "steel-chest", amount = 10 },
+        { type = "item", name = "advanced-circuit", amount = 20 },
     },
     results = { { type = "item", name = "dedicated-storage-chest", amount = 1 } },
 }

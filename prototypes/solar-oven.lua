@@ -12,10 +12,10 @@ solar_oven.icons = {
         icon_size = 612 -- using height to square it off roughly
     }
 }
-solar_oven.crafting_speed = 6
+solar_oven.crafting_speed = 4
 solar_oven.effect_receiver = {
     base_effect = {
-        productivity = 0.4
+        productivity = 0.5
     }
 }
 solar_oven.module_slots = 4
@@ -60,10 +60,10 @@ local solar_oven_recipe = {
     type = "recipe",
     name = "solar-oven",
     ingredients = {
-        {type="item", name="steel-plate", amount=10},
-        {type="item", name="stone-brick", amount=10},
-        {type="item", name="advanced-circuit", amount=5},
-        {type="item", name="solar-panel", amount=5}
+        {type="item", name="electric-furnace", amount=2},
+        {type="item", name="speed-module", amount=2},
+        {type="item", name="glass", amount=10},
+        {type="item", name="SiliconIngot", amount=5}
     },
     results = {
         {type="item", name="solar-oven", amount=1}

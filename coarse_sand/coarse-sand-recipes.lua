@@ -39,6 +39,7 @@ data:extend({
             { type = "item", name = "stone", amount_min = 7, amount_max = 8 },
             { type = "item", name = "iron-ore", amount_min = 1, amount_max = 2 },
             { type = "item", name = "copper-ore", amount = 1 },
+            { type = "item", name = "coal", amount = 1 },
         },
         icon = "__factorio_planet_mod__/assets/coarse-sand.png",
         icon_size = 256,
@@ -60,7 +61,7 @@ data:extend({
         category = "smelting",
         subgroup = "raw-material",
         order = "a[glass]",
-        enabled = true,
+        enabled = false,
         energy_required = 3.2,
         ingredients = {
             { type = "item", name = "silica-sand", amount = 1 },

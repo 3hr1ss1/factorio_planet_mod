@@ -128,29 +128,23 @@ local core_mining_recipes = {
 -- Advanced recipes: 30s cycle (15 MJ), produce planet-specific ores.
 -- All yield < 0.25 items/s to stay below the base recipe throughput.
 local advanced_core_mining_recipes = {
-    -- 0.20/s
     core_mining_recipe("advanced-core-mining-nauvis",   9.5, 10.5, 30,
-        { { type="item", name="iron-ore",    amount=4 }, { type="item", name="copper-ore", amount=2 } },
+        { { type="item", name="stone", amount=5 }, { type="item", name="iron-ore", amount=2 }, { type="item", name="copper-ore", amount=1 }, { type="item", name="coal", amount=1 } },
         "__base__/graphics/icons/iron-ore.png"),
-    -- 0.17/s
     core_mining_recipe("advanced-core-mining-mithras",  2.0,  2.8, 30,
-        { { type="item", name="silicon-ore", amount=3 }, { type="item", name="coarse-sand", amount=2 } },
+        { { type="item", name="coarse-sand", amount=8 }, { type="item", name="silicon-ore", amount=1 }, { type="item", name="iron-ore", amount=1 }, { type="item", name="copper-ore", amount=1 } },
         "__factorio_planet_mod__/assets/silicia_bar.png"),
-    -- 0.13/s
     core_mining_recipe("advanced-core-mining-vulcanus", 29.5, 30.5, 30,
-        { { type="item", name="tungsten-ore", amount=2 }, { type="item", name="calcite", amount=2 } },
+        { { type="item", name="stone", amount=5 }, { type="item", name="calcite", amount=3 }, { type="item", name="tungsten-ore", amount=1 } },
         "__space-age__/graphics/icons/tungsten-ore.png"),
-    -- 0.13/s
     core_mining_recipe("advanced-core-mining-fulgora",   5.5,  6.5, 30,
-        { { type="item", name="scrap", amount=4 } },
+        { { type="item", name="stone", amount=5 }, { type="item", name="scrap", amount=3 } },
         "__space-age__/graphics/icons/scrap.png"),
-    -- 0.10/s
     core_mining_recipe("advanced-core-mining-gleba",    14.5, 15.5, 30,
-        { { type="item", name="stone", amount=2 }, { type="item", name="sulfur", amount=1 } },
+        { { type="item", name="stone", amount=5 }, { type="item", name="sulfur", amount=2 } },
         "__base__/graphics/icons/sulfur.png"),
-    -- 0.10/s
     core_mining_recipe("advanced-core-mining-aquilo",    4.5,  5.5, 30,
-        { { type="item", name="ice-platform", amount=2 }, { type="item", name="lithium", amount=1 } },
+        { { type="item", name="stone", amount=5 }, { type="item", name="lithium", amount=2 } },
         "__space-age__/graphics/icons/lithium.png"),
 }
 
