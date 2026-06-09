@@ -40,10 +40,11 @@ shortInserterItem.icons = {
 local recipe = {
     type = "recipe",
     name = "short-handed-inserter",
-    enabled = true,
+    enabled = false,
     ingredients = {
-        { type = "item", name = "copper-plate", amount = 200 },
-        { type = "item", name = "steel-plate", amount = 50 },
+        { type = "item", name = "inserter", amount = 1 },
+        { type = "item", name = "electronic-circuit", amount = 2 },
+        { type = "item", name = "iron-plate", amount = 2 },
     },
     results = { { type = "item", name = "short-handed-inserter", amount = 1 } },
 }
