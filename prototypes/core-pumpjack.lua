@@ -128,10 +128,10 @@ end
 -- One recipe per planet. Gravity ranges match the Core Miner advanced recipes.
 local core_pumping_recipes = {
     core_pumping_recipe("core-pumping-nauvis",    9.5, 10.5, "water",                "__base__/graphics/icons/fluid/water.png"),
-    core_pumping_recipe("core-pumping-vulcanus", 29.5, 30.5, "lava",                 "__space-age__/graphics/icons/fluid/lava.png"),
-    core_pumping_recipe("core-pumping-fulgora",   5.5,  6.5, "heavy-oil",            "__base__/graphics/icons/fluid/heavy-oil.png"),
-    core_pumping_recipe("core-pumping-gleba",    14.5, 15.5, "water",                "__base__/graphics/icons/fluid/water.png"),
-    core_pumping_recipe("core-pumping-aquilo",    4.5,  5.5, "ammoniacal-solution",  "__space-age__/graphics/icons/fluid/ammoniacal-solution.png"),
+    core_pumping_recipe("core-pumping-vulcanus", 39.5, 40.5, "lava",                 "__space-age__/graphics/icons/fluid/lava.png"),
+    core_pumping_recipe("core-pumping-fulgora",   7.5,  8.5, "heavy-oil",            "__base__/graphics/icons/fluid/heavy-oil.png"),
+    core_pumping_recipe("core-pumping-gleba",    19.5, 20.5, "water",                "__base__/graphics/icons/fluid/water.png"),
+    core_pumping_recipe("core-pumping-aquilo",   14.5, 15.5, "ammoniacal-solution",  "__space-age__/graphics/icons/fluid/ammoniacal-solution.png"),
     core_pumping_recipe("core-pumping-mithras",   2.0,  2.8, "water",                "__base__/graphics/icons/fluid/water.png"),
 }
 
