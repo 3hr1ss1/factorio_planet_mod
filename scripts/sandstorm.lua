@@ -1,4 +1,5 @@
 local sandstorm = {}
+local iondome = require("scripts.iondome")
 
 local UPDATE_INTERVAL_TICKS = 2
 local SECONDS_PER_TICK = 1 / 60
