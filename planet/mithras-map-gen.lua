@@ -1,5 +1,46 @@
 local planet_map_gen = require("__space-age__/prototypes/planet/planet-map-gen")
 
+data:extend({
+    {
+        type = "autoplace-control",
+        name = "mithras_crude_oil",
+        localised_name = {"", "[entity=crude-oil] ", {"entity-name.crude-oil"}},
+        richness = true,
+        order = "a-u",
+        category = "resource"
+    },
+    {
+        type = "noise-expression",
+        name = "mithras_crude_oil_spots",
+        expression = "spot_noise{x = x,\z
+                                  y = y,\z
+                                  seed0 = map_seed,\z
+                                  seed1 = 19715,\z
+                                  candidate_spot_count = 4,\z
+                                  suggested_minimum_candidate_point_spacing = 128,\z
+                                  skip_span = 1,\z
+                                  skip_offset = 0,\z
+                                  region_size = 800 + 400 / control:mithras_crude_oil:frequency,\z
+                                  density_expression = 1,\z
+                                  spot_quantity_expression = 30 * 30 * control:mithras_crude_oil:size,\z
+                                  spot_radius_expression = 30 * sqrt(control:mithras_crude_oil:size),\z
+                                  hard_region_target_quantity = 0,\z
+                                  spot_favorability_expression = 1,\z
+                                  basement_value = -1,\z
+                                  maximum_spot_basement_radius = 60}"
+    },
+    {
+        type = "noise-expression",
+        name = "mithras_crude_oil_probability",
+        expression = "(control:mithras_crude_oil:size > 0) * (mithras_crude_oil_spots > 0) * 0.015"
+    },
+    {
+        type = "noise-expression",
+        name = "mithras_crude_oil_richness",
+        expression = "mithras_crude_oil_spots * 1200000 * control:mithras_crude_oil:richness"
+    },
+})
+
 --PLANET MAP GEN
 planet_map_gen.mithras = function()
   local tile_settings = {}
@@ -48,17 +89,6 @@ planet_map_gen.mithras = function()
     richness = 1
   }
 
-  -- Crude oil on Mithras: rare to find, but generous when you do.
-  -- Low frequency  -> few oil fields scattered far apart.
-  -- High size      -> each field that does spawn covers a large area (many wells).
-  -- High richness  -> each well yields a lot.
-  entity_settings["crude-oil"] =
-  {
-    frequency = 0.15,
-    size = 4,
-    richness = 2
-  }
-
   -- Follow Muluna's guarded autoplace style: only include tree entities that exist.
   if data and data.raw and data.raw.tree then
     local dead_tree_candidates =
@@ -91,6 +121,8 @@ planet_map_gen.mithras = function()
       aux = "aux_basic",
       cliffiness = "fulgora_cliffiness * 0.55",
       cliff_elevation = "cliff_elevation_from_elevation",
+      ["entity:crude-oil:probability"] = "mithras_crude_oil_probability",
+      ["entity:crude-oil:richness"] = "mithras_crude_oil_richness",
     },
     cliff_settings =
     {
@@ -111,7 +143,7 @@ planet_map_gen.mithras = function()
       -- Keep this for compatibility with Fulgora cliff control.
       ["fulgora_cliff"] = {},
       ["silicon-ore"] = { frequency = 3, size = 1.5, richness = 1 },
-      ["crude-oil"] = { frequency = 0.15, size = 4, richness = 2 },
+      ["mithras_crude_oil"] = {},
     },
     autoplace_settings =
     {

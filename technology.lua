@@ -5,9 +5,13 @@ data:extend({
     {
         type = "technology",
         name = "planet-discovery-mithras",
-        --icons = util.technology_icon_constant_planet("__space-age__/graphics/icons/vulcanus.png"),
-        icons = util.technology_icon_constant_planet("__space-age__/graphics/technology/vulcanus.png"),
-        icon_size = 256,
+        icons = {
+            {
+                icon = "__factorio_planet_mod__/assets/starmap-planet-mithras.png",
+                icon_size = 512,
+                scale = 0.5,
+            }
+        },
         essential = true,
         effects =
         {
@@ -37,7 +41,7 @@ data:extend({
     {
         type = "technology",
         name = "nuclear-artillery",
-        icon = "__base__/graphics/icons/artillery-shell.png",
+        icon = "__factorio_planet_mod__/assets/nuclear-artillery-shell.png",
         icon_size = 64,
         icon_mipmaps = 4,
         effects =
@@ -98,9 +102,8 @@ data:extend({
     {
         type = "technology",
         name = "solar-energy-mk2",
-        icon = "__base__/graphics/technology/solar-energy.png",
-        icon_size = 256,
-        icon_mipmaps = 4,
+        icon = "__factorio_planet_mod__/assets/solar_panels_transparent_new_r1_c1.png",
+        icon_size = 512,
         effects =
         {
             {
@@ -195,6 +198,7 @@ data:extend({
                 recipe = "SiliconIngot-recipe"
             }
         },
+        prerequisites = { "planet-discovery-mithras" },
         research_trigger =
         {
             type = "mine-entity",
@@ -215,6 +219,7 @@ data:extend({
             { type = "unlock-recipe", recipe = "stone-centrifuging" },
             { type = "unlock-recipe", recipe = "glass" }
         },
+        prerequisites = { "planet-discovery-mithras" },
         research_trigger =
         {
             type = "mine-entity",

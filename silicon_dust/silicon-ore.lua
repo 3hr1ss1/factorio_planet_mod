@@ -8,6 +8,7 @@ data:extend({
         type = "autoplace-control",
         category = "resource",
         name = "silicon-ore",
+        localised_name = {"", "[entity=silicon-ore] ", {"entity-name.silicon-ore"}},
         richness = true,
         order = "a-t",
     },
