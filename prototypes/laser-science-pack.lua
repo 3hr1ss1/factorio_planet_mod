@@ -8,11 +8,11 @@ data:extend(
 {
   {
     type = "tool",
-    name = "solar-science-pack",
-    icon = "__factorio_planet_mod__/assets/solar-science-pack.png",
+    name = "laser-science-pack",
+    icon = "__factorio_planet_mod__/assets/laser-science-pack.png",
     icon_size = 64,
     subgroup = "science-pack",
-    order = "s[solar-science-pack]",
+    order = "s[laser-science-pack]",
     stack_size = 200,
     weight = 1000, -- 1 kg
     durability = 1,
@@ -22,14 +22,15 @@ data:extend(
   },
   {
     type = "recipe",
-    name = "solar-science-pack",
+    name = "laser-science-pack",
     enabled = false,
     energy_required = 10,
     ingredients =
     {
-      {type = "item", name = "solar-panel", amount = 3}
+      { type = "item", name = "glass",       amount = 5 },
+      { type = "item", name = "SiliconIngot", amount = 2 }
     },
-    results = {{type="item", name="solar-science-pack", amount=1}},
+    results = {{ type = "item", name = "laser-science-pack", amount = 1 }},
     allow_productivity = true
   }
 }

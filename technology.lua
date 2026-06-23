@@ -9,7 +9,13 @@ data:extend({
             {
                 icon = "__factorio_planet_mod__/assets/starmap-planet-mithras.png",
                 icon_size = 512,
-                scale = 0.5,
+                scale = 256/512,
+            },
+            {
+                icon = "__core__/graphics/icons/technology/constants/constant-planet.png",
+                icon_size = 128,
+                shift = {100, 100},
+                floating = true
             }
         },
         essential = true,
@@ -58,7 +64,7 @@ data:extend({
                 recipe = "nuclear-artillery-shell"
             }
         },
-        prerequisites = { "planet-discovery-mithras", "atomic-bomb", "artillery", "solar-science-pack" },
+        prerequisites = { "planet-discovery-mithras", "atomic-bomb", "artillery", "laser-science-pack" },
         unit =
         {
             count = 1500,
@@ -70,7 +76,7 @@ data:extend({
                 { "chemical-science-pack",        1 },
                 { "utility-science-pack",         1 },
                 { "space-science-pack",           1 },
-                { "solar-science-pack",           1 }
+                { "laser-science-pack",           1 }
             },
             time = 30
         }
@@ -88,7 +94,7 @@ data:extend({
                 recipe = "short-handed-inserter"
             }
         },
-        prerequisites = { "planet-discovery-mithras", "automation", "solar-science-pack" },
+        prerequisites = { "planet-discovery-mithras", "automation", "laser-science-pack" },
         unit =
         {
             count = 1000,
@@ -100,7 +106,7 @@ data:extend({
                 { "production-science-pack",      1 },
                 { "utility-science-pack",         1 },
                 { "space-science-pack",           1 },
-                { "solar-science-pack",           1 }
+                { "laser-science-pack",           1 }
             },
             time = 60
         },
@@ -118,7 +124,7 @@ data:extend({
                 recipe = "solar-panel-mk2"
             }
         },
-        prerequisites = { "solar-energy", "solar-science-pack" },
+        prerequisites = { "solar-energy", "laser-science-pack" },
         unit =
         {
             count = 1000,
@@ -130,7 +136,7 @@ data:extend({
                 { "production-science-pack",      1 },
                 { "utility-science-pack",         1 },
                 { "space-science-pack",           1 },
-                { "solar-science-pack",           1 }
+                { "laser-science-pack",           1 }
             },
             time = 60
         },
@@ -161,7 +167,7 @@ data:extend({
                 { "production-science-pack",      1 },
                 { "utility-science-pack",         1 },
                 { "space-science-pack",           1 },
-                { "solar-science-pack",           1 }
+                { "laser-science-pack",           1 }
             },
             time = 30
         },
@@ -169,27 +175,22 @@ data:extend({
     },
     {
         type = "technology",
-        name = "solar-science-pack",
-        icon = "__factorio_planet_mod__/assets/solar-science-pack.png",
+        name = "laser-science-pack",
+        icon = "__factorio_planet_mod__/assets/laser-science-pack.png",
         icon_size = 64,
         effects =
         {
             {
                 type = "unlock-recipe",
-                recipe = "solar-science-pack"
+                recipe = "laser-science-pack"
             }
         },
         prerequisites = { "planet-discovery-mithras" },
-        unit =
+        research_trigger =
         {
-            count = 50,
-            ingredients =
-            {
-                { "automation-science-pack", 1 },
-                { "logistic-science-pack",   1 },
-                { "chemical-science-pack",   1 }
-            },
-            time = 30
+            type = "craft-item",
+            item = "glass",
+            count = 1
         },
         order = "c-a"
     },
@@ -247,7 +248,7 @@ data:extend({
                 recipe = "solar-oven"
             }
         },
-        prerequisites = { "silicon-processing", "sand-processing", "advanced-material-processing-2", "solar-science-pack" },
+        prerequisites = { "silicon-processing", "sand-processing", "advanced-material-processing-2", "laser-science-pack" },
         unit =
         {
             count = 100,
@@ -259,7 +260,7 @@ data:extend({
                 { "production-science-pack", 1 },
                 { "utility-science-pack",    1 },
                 { "space-science-pack",      1 },
-                { "solar-science-pack",      1 }
+                { "laser-science-pack",      1 }
             },
             time = 30
         },
@@ -291,7 +292,7 @@ data:extend({
                 { "production-science-pack", 1 },
                 { "utility-science-pack",    1 },
                 { "space-science-pack",      1 },
-                { "solar-science-pack",      1 }
+                { "laser-science-pack",      1 }
             },
             time = 30
         },
