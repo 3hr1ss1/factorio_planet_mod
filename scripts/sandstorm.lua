@@ -379,7 +379,8 @@ local function apply_storm_damage(storm, surface, damage_force)
   }
 
   for _, entity in pairs(surface.find_entities_filtered({area = {left_top, right_bottom}})) do
-    if entity_can_be_damaged(entity) and entity_in_storm(storm, entity) then
+    if entity_can_be_damaged(entity) and entity_in_storm(storm, entity)
+        and not iondome.is_protected(surface, entity.position) then
       damage_entity(entity, damage_force)
     end
   end
