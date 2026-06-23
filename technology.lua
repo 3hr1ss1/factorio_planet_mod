@@ -18,7 +18,14 @@ data:extend({
             },
             { type = "unlock-recipe", recipe = "core-miner" },
             { type = "unlock-recipe", recipe = "core-mining-basic" },
-            { type = "unlock-recipe", recipe = "core-mining-mithras" }
+            { type = "unlock-recipe", recipe = "core-mining-mithras" },
+            { type = "unlock-recipe", recipe = "core-pumpjack" },
+            { type = "unlock-recipe", recipe = "core-pumping-nauvis" },
+            { type = "unlock-recipe", recipe = "core-pumping-vulcanus" },
+            { type = "unlock-recipe", recipe = "core-pumping-fulgora" },
+            { type = "unlock-recipe", recipe = "core-pumping-gleba" },
+            { type = "unlock-recipe", recipe = "core-pumping-aquilo" },
+            { type = "unlock-recipe", recipe = "core-pumping-mithras" }
         },
         prerequisites = { "space-platform-thruster", "solar-energy", "uranium-processing" },
         unit =
