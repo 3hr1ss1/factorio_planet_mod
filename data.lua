@@ -14,6 +14,7 @@ require("prototypes.laser-science-pack")
 require("prototypes.solar-panel-mk2")
 require("prototypes.core-miner")
 require("prototypes.core-pumpjack")
+require("prototypes.iondome")
 
 local assemblingMachine4 = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"]) -- copy the table that defines the heavy armor item into the fireArmor variable
 
