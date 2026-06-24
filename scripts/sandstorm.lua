@@ -63,20 +63,37 @@ local function clamp(value, min_value, max_value)
 end
 
 local function is_desert_tile(surface, tile_name)
+  game.print(tile_name)
   if tile_name == nil then
+  game.print("tile is nill")
     return false
   end
 
   -- On Mithras we prefer all custom surface tiles and fulgoran desert fallbacks.
   if surface ~= nil and surface.valid and surface.name == "mithras" then
     if string.find(tile_name, "mithras-", 1, true) == 1 then
+		game.print("Tile contains mithras")
       return true
+    else
+	 -- if this works, we can just do this and remove all below code
+     return false
     end
     if string.find(tile_name, "fulgoran-", 1, true) == 1 then
+		game.print("Tile contains fulgora")
       return true
     end
+  else
+    return false
   end
 
+  game.print("tile contains nothing")
+  local a =  string.find(tile_name, "desert", 1, true) ~= nil
+  local b = string.find(tile_name, "sand", 1, true) ~= nil
+  local c = string.find(tile_name, "dunes", 1, true) ~= nil
+  local d = string.find(tile_name, "dust", 1, true) ~= nil
+  local e = string.find(tile_name, "rock", 1, true) ~= nil
+  local outstr = string.format("a: %s, b: %s, c: %s, d: %s, e: %s", tostring(a), tostring(b), tostring(c), tostring(d), tostring(e))
+  game.print(outstr)
   return string.find(tile_name, "desert", 1, true) ~= nil
     or string.find(tile_name, "sand", 1, true) ~= nil
     or string.find(tile_name, "dunes", 1, true) ~= nil
@@ -296,6 +313,7 @@ end
 
 local function try_spawn_storm_on_surface(rng, surface, anchor_position)
   if surface == nil or not surface.valid then
+	game.print("Non valid surface")
     return false
   end
 
