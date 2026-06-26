@@ -4,15 +4,26 @@
 -- on (gated through surface_conditions on gravity). No ore deposit is required
 -- on the surface.
 --
--- Graphics: placeholder uses the vanilla big-mining-drill sheet. Replace the
--- graphics_set block once the dedicated texture is ready.
+-- Graphics: dedicated core-miner textures. The active texture is shown while
+-- the miner is working, the inactive texture while it is idle/off.
 
-local big_drill_graphics = data.raw["mining-drill"]["big-mining-drill"]
-    and table.deepcopy(data.raw["mining-drill"]["big-mining-drill"].graphics_set)
-    or nil
+local core_miner_active_texture = "__factorio_planet_mod__/assets/drill_active.png"
+local core_miner_inactive_texture = "__factorio_planet_mod__/assets/drill_inactive.png"
+local core_miner_texture_size = 318
+local core_miner_texture_scale = 0.65
 
-local core_miner_icon = "__space-age__/graphics/icons/big-mining-drill.png"
-local core_miner_icon_size = 64
+local function core_miner_picture(filename)
+    return {
+        filename = filename,
+        width = core_miner_texture_size,
+        height = core_miner_texture_size,
+        scale = core_miner_texture_scale,
+        frame_count = 1
+    }
+end
+
+local core_miner_icon = core_miner_inactive_texture
+local core_miner_icon_size = core_miner_texture_size
 
 local core_mining_category = {
     type = "recipe-category",
@@ -47,14 +58,9 @@ local core_miner_entity = {
     energy_usage = "500kW",
     module_slots = 3,
     allowed_effects = { "speed", "productivity", "consumption", "pollution", "quality" },
-    graphics_set = big_drill_graphics or {
-        animation = {
-            filename = core_miner_icon,
-            width = core_miner_icon_size,
-            height = core_miner_icon_size,
-            scale = 2.5,
-            frame_count = 1
-        }
+    graphics_set = {
+        animation = core_miner_picture(core_miner_active_texture),
+        idle_animation = core_miner_picture(core_miner_inactive_texture)
     },
     working_visualisations = nil,
     water_reflection = nil,
