@@ -17,7 +17,7 @@ local STORM_BITER_SPAWN_INTERVAL_TICKS = 180
 local STORM_BITERS_PER_SPAWN = 3
 local STORM_BITER_BY_EVOLUTION = {
   {threshold = 0.9, name = "behemoth-biter"},
-  {threshold = 0.6, name = "large-biter"},
+  {threshold = 0.6, name = "big-biter"},
   {threshold = 0.3, name = "medium-biter"},
   {threshold = 0.0, name = "small-biter"},
 }
@@ -387,7 +387,7 @@ local function get_storm_biter_name(surface)
   local enemy_force = game.forces.enemy
   local evolution = (enemy_force and enemy_force.valid) and enemy_force.get_evolution_factor(surface) or 0
   for _, entry in ipairs(STORM_BITER_BY_EVOLUTION) do
-    if evolution >= entry.threshold then
+    if evolution >= entry.threshold and prototypes.entity[entry.name] then
       return entry.name
     end
   end
