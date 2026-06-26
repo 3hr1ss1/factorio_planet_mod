@@ -56,6 +56,12 @@ script.on_event(defines.events.on_tick, function(event)
                     entity.active = true
                 end
             end
+
+            -- Solar Precision Plant: solar-powered, so it only works during the day.
+            for _, entity in pairs(surface.find_entities_filtered({name = "solar-precision-plant"})) do
+                local daytime = surface.daytime
+                entity.active = (daytime > 0.25 and daytime < 0.75)
+            end
         end
     end
 end)
