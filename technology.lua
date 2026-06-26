@@ -115,7 +115,7 @@ data:extend({
     {
         type = "technology",
         name = "solar-energy-mk2",
-        icon = "__factorio_planet_mod__/assets/solar_panels_transparent_new_r1_c1.png",
+        icon = "__factorio_planet_mod__/assets/solar_panel_mk2.png",
         icon_size = 512,
         effects =
         {
