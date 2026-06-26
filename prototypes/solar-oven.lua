@@ -26,20 +26,33 @@ solar_oven.energy_source = {
 }
 solar_oven.energy_usage = "1W"
 
+local oven_sprite_on = {
+    filename = "__factorio_planet_mod__/assets/solar-oven.png",
+    priority = "high",
+    width = 669,
+    height = 612,
+    frame_count = 1,
+    shift = {0, 0.05},
+    scale = 0.175,
+}
+
+local oven_sprite_off = {
+    filename = "__factorio_planet_mod__/assets/solar-oven-off.png",
+    priority = "high",
+    width = 669,
+    height = 612,
+    frame_count = 1,
+    shift = {0, 0.05},
+    scale = 0.175,
+}
+
 solar_oven.graphics_set = {
     animation = {
-        layers = {
-            {
-                filename = "__factorio_planet_mod__/assets/solar-oven.png",
-                priority = "high",
-                width = 669,
-                height = 612,
-                frame_count = 1,
-                shift = {0, 0.05},
-                scale = 0.175,
-            }
-        }
-    }
+        layers = { oven_sprite_on }
+    },
+    idle_animation = {
+        layers = { oven_sprite_off }
+    },
 }
 
 solar_oven.working_visualisations = nil

@@ -61,10 +61,11 @@ local recipe = {
   enabled = true,
   energy_required = 10,
   ingredients = {
-    { type = "item", name = "accumulator",      amount = 2 },
     { type = "item", name = "processing-unit",  amount = 10 },
-    { type = "item", name = "steel-plate",      amount = 20 },
-    { type = "item", name = "glass",            amount = 10 },
+    { type = "item", name = "SiliconIngot",     amount = 20 },
+    { type = "item", name = "glass",            amount = 15 },
+    { type = "item", name = "concrete",         amount = 5  },
+    { type = "item", name = "steel-plate",      amount = 50 },
   },
   results = { { type = "item", name = "ion-dome", amount = 1 } },
 }
