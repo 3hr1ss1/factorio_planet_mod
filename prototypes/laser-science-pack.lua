@@ -23,6 +23,7 @@ data:extend(
   {
     type = "recipe",
     name = "laser-science-pack",
+    category = "solar-precision-crafting",
     enabled = false,
     energy_required = 10,
     ingredients =

@@ -185,14 +185,14 @@ data:extend({
                 recipe = "laser-science-pack"
             }
         },
-        prerequisites = { "planet-discovery-mithras" },
+        prerequisites = { "planet-discovery-mithras", "solar-precision-plant" },
         research_trigger =
         {
             type = "craft-item",
-            item = "glass",
+            item = "solar-precision-plant",
             count = 1
         },
-        order = "c-a"
+        order = "c-b"
     },
     {
         type = "technology",
@@ -298,4 +298,53 @@ data:extend({
         },
         order = "c-c"
     },
+})
+
+-- Solar Precision Plant technology.
+-- Unlocks the plant plus the plant-exclusive science recipes created in
+-- prototypes/solar-precision-plant.lua. The duplicate recipe names are derived
+-- the same way ("solar-precision-" .. pack) and guarded on the vanilla original,
+-- so the two files stay in sync even if a science pack is absent.
+local solar_precision_effects = {
+    { type = "unlock-recipe", recipe = "solar-precision-plant" }
+}
+
+local solar_precision_pack_recipes = {
+    "automation-science-pack",
+    "logistic-science-pack",
+    "military-science-pack",
+    "chemical-science-pack",
+    "production-science-pack",
+    "utility-science-pack",
+    "space-science-pack",
+    "metallurgic-science-pack",
+    "electromagnetic-science-pack",
+    "agricultural-science-pack",
+    "cryogenic-science-pack",
+    "promethium-science-pack"
+}
+
+for _, pack in ipairs(solar_precision_pack_recipes) do
+    if data.raw.recipe[pack] then
+        solar_precision_effects[#solar_precision_effects + 1] =
+            { type = "unlock-recipe", recipe = "solar-precision-" .. pack }
+    end
+end
+
+data:extend({
+    {
+        type = "technology",
+        name = "solar-precision-plant",
+        icon = "__factorio_planet_mod__/assets/SolarAssembler.png",
+        icon_size = 1228,
+        effects = solar_precision_effects,
+        prerequisites = { "silicon-processing", "sand-processing" },
+        research_trigger =
+        {
+            type = "craft-item",
+            item = "SiliconIngot",
+            count = 10
+        },
+        order = "c-a"
+    }
 })
