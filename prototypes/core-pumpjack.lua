@@ -58,10 +58,10 @@ local core_pumpjack_entity = {
     --   south = pump_up    (connection bottom)  west = pump_right (connection left)
     graphics_set = {
         animation = {
-            north = { filename = "__factorio_planet_mod__/assets/pump_down.png",  width = pump_texture_size, height = pump_texture_size, frame_count = 1, scale = 0.66 },
-            east  = { filename = "__factorio_planet_mod__/assets/pump_left.png",  width = pump_texture_size, height = pump_texture_size, frame_count = 1, scale = 0.66 },
-            south = { filename = "__factorio_planet_mod__/assets/pump_up.png",    width = pump_texture_size, height = pump_texture_size, frame_count = 1, scale = 0.66 },
-            west  = { filename = "__factorio_planet_mod__/assets/pump_right.png", width = pump_texture_size, height = pump_texture_size, frame_count = 1, scale = 0.66 },
+            north = { filename = "__factorio_planet_mod__/assets/pump_down.png",  width = pump_texture_size, height = pump_texture_size, frame_count = 1, scale = 0.85 },
+            east  = { filename = "__factorio_planet_mod__/assets/pump_left.png",  width = pump_texture_size, height = pump_texture_size, frame_count = 1, scale = 0.85 },
+            south = { filename = "__factorio_planet_mod__/assets/pump_up.png",    width = pump_texture_size, height = pump_texture_size, frame_count = 1, scale = 0.85 },
+            west  = { filename = "__factorio_planet_mod__/assets/pump_right.png", width = pump_texture_size, height = pump_texture_size, frame_count = 1, scale = 0.85 },
         }
     },
     open_sound = { filename = "__base__/sound/open-close/electric-large-open.ogg", volume = 0.5 },
