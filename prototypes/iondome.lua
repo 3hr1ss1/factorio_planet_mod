@@ -17,16 +17,16 @@ dome.discharge_cooldown = 0
 
 -- Grafik
 dome.icon = "__factorio_planet_mod__/assets/ion_dome.png"
-dome.icon_size = 512
+dome.icon_size = 318
 dome.icons = nil
 
 dome.chargable_graphics = {
   picture = {
     filename = "__factorio_planet_mod__/assets/ion_dome.png",
-    width = 512,
-    height = 512,
-    scale = 0.18,
-    shift = { -0.5, -0.5 },
+    width = 318,
+    height = 318,
+    scale = 0.23,
+    shift = { 0, 0 },
   },
   charge_animation = nil,
   discharge_animation = nil,
@@ -38,7 +38,7 @@ local item = {
   type = "item",
   name = "ion-dome",
   icon = "__factorio_planet_mod__/assets/ion_dome.png",
-  icon_size = 512,
+  icon_size = 318,
   subgroup = "defensive-structure",
   order = "b[ion-dome]",
   place_result = "ion-dome",
