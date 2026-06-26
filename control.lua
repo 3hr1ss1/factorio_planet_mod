@@ -2,47 +2,6 @@ local sandstorm = require("scripts.sandstorm")
 local dedicated_storage = require("prototypes.dedicated-storage-chest-control")
 local iondome = require("scripts.iondome")
 
-local dome_renders = {}  -- [player_index] = { render_obj, render_obj }
-
-script.on_event(defines.events.on_selected_entity_changed, function(event)
-  local player = game.get_player(event.player_index)
-  if not player or not player.valid then return end
-
-  if dome_renders[event.player_index] then
-    for _, r in pairs(dome_renders[event.player_index]) do
-      if r.valid then r.destroy() end
-    end
-    dome_renders[event.player_index] = nil
-  end
-
-  local entity = player.selected
-  if entity and entity.valid and entity.name == "ion-dome" then
-    local x, y = entity.position.x, entity.position.y
-    local area = {
-      left_top     = { x = x - 24, y = y - 24 },
-      right_bottom = { x = x + 24, y = y + 24 },
-    }
-    local r1 = rendering.draw_rectangle({
-      color = { r = 0.2, g = 0.6, b = 1.0, a = 0.15 },
-      filled = true,
-      left_top = area.left_top,
-      right_bottom = area.right_bottom,
-      surface = entity.surface,
-      draw_on_ground = true,
-    })
-    local r2 = rendering.draw_rectangle({
-      color = { r = 0.2, g = 0.6, b = 1.0, a = 0.6 },
-      filled = false,
-      width = 2,
-      left_top = area.left_top,
-      right_bottom = area.right_bottom,
-      surface = entity.surface,
-      draw_on_ground = true,
-    })
-    dome_renders[event.player_index] = { r1, r2 }
-  end
-end)
-
 script.on_init(function()
   sandstorm.on_init()
   dedicated_storage.on_init()

@@ -15,6 +15,16 @@ dome.energy_source = {
 dome.charge_cooldown = 30
 dome.discharge_cooldown = 0
 
+dome.radius_visualisation_specification = {
+  sprite = {
+    filename = "__base__/graphics/entity/small-electric-pole/electric-pole-radius-visualization.png",
+    size = 10,
+  },
+  distance = 24,
+  draw_in_cursor = true,
+  draw_on_selection = true,
+}
+
 -- Grafik
 dome.icon = "__factorio_planet_mod__/assets/ion_dome_icon.png"
 dome.icon_size = 318
