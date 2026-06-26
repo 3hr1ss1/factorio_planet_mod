@@ -1,4 +1,4 @@
-local solarPanel2Texture = "__factorio_planet_mod__/assets/solar_panels_transparent_new_r1_c1.png"
+local solarPanel2Texture = "__factorio_planet_mod__/assets/solar_panel_mk2.png"
 
 local solarPanel2Item = table.deepcopy(data.raw["item"]["solar-panel"])
 solarPanel2Item.name = "solar-panel-mk2"
@@ -23,6 +23,7 @@ solarPanel2Entity.picture = {
             width = 512,
             height = 512,
             scale = 0.24,
+            shift = { -0.4, -0.4 },
         }
     }
 }
